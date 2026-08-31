@@ -1,7 +1,17 @@
-footr {
+footer {
   text-align: center;
   possition: fixex;
   bottom: 0;
   width: 100%;
   font-size: 15px;
+
+  nav ul {
+    display: flex;
+    gap: 30px
+    liststyle: none;
+  }
+  
+  nav a {
+    texdecoration: noe;
+  }
   
