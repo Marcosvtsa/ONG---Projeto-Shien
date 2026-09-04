@@ -1,17 +1,36 @@
-footer {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    title{
+        text-align: center;
+        background-color: #f38f1d;
+    }
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+header{
+  background-color: #f38f1d;
+  color: white;
   text-align: center;
-  possition: fixex;
-  bottom: 0;
-  width: 100%;
-  font-size: 15px;
-
+}
+footer {
+    margin-top: auto;
+    background-color: #f38f1d;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
   nav ul {
     display: flex;
-    gap: 30px
-    liststyle: none;
+    gap: 15px;
+    list-style: none;
+    background-color: #f38f1d;
   }
   
   nav a {
-    texdecoration: noe;
+    text-decoration: noe;
   }
-  

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Faça uma doação | Projeto Shien</title>
+</head>
+<body>
+	<header>
+		<h1>Projeto Shien</h1>
+		<nav aria-label="Navegação principal">
+			<a href="index.html">Início</a>
+			<a href="doacao.html" aria-current="page">Doação</a>
+		</nav>
+	</header>
+
+	<main>
+		<section aria-labelledby="titulo-doacao">
+			<h2 id="titulo-doacao">Ajude o Projeto Shien</h2>
+			<p>Sua contribuição ajuda a transformar vidas e fortalecer nossas ações sociais.</p>
+
+			<form action="#" method="post">
+				<label for="nome">Nome</label>
+				<input type="text" id="nome" name="nome" autocomplete="name" required>
+
+				<label for="email">E-mail</label>
+				<input type="email" id="email" name="email" autocomplete="email" required>
+
+				<label for="valor">Valor da doação (R$)</label>
+				<input type="number" id="valor" name="valor" min="1" step="0.01" required>
+
+				<button type="submit">Doar agora</button>
+			</form>
+		</section>
+	</main>
+
+	<footer>
+		<p>&copy; 2025 Projeto Shien. Todos os direitos reservados.</p>
+	</footer>
+</body>
+</html>
