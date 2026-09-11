@@ -1,41 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Faça uma doação | Projeto Shien</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/css.css">
+    <title>Patinhas Livres</title>
 </head>
 <body>
-	<header>
-		<h1>Projeto Shien</h1>
-		<nav aria-label="Navegação principal">
-			<a href="index.html">Início</a>
-			<a href="doacao.html" aria-current="page">Doação</a>
-		</nav>
-	</header>
 
-	<main>
-		<section aria-labelledby="titulo-doacao">
-			<h2 id="titulo-doacao">Ajude o Projeto Shien</h2>
-			<p>Sua contribuição ajuda a transformar vidas e fortalecer nossas ações sociais.</p>
+    <header>  
+        <h1>Patinhas Livres</h1>
+        <nav>
+            <ul>
+                <li><a href="sobre.html">Quem Somos</a></li>
+                <li><a href="adocao">Adoção</a></li>
+                <li><a href=docao.thml>Faça uma doação</a></li>
+                <li><a href="Projetos.html">Projetos</a></li>
+            </ul>
+        </nav>
 
-			<form action="#" method="post">
-				<label for="nome">Nome</label>
-				<input type="text" id="nome" name="nome" autocomplete="name" required>
+    <h1>Aplicação DOAÇÃO</h1>
 
-				<label for="email">E-mail</label>
-				<input type="email" id="email" name="email" autocomplete="email" required>
+    <form action="/pagto" method="POST">
 
-				<label for="valor">Valor da doação (R$)</label>
-				<input type="number" id="valor" name="valor" min="1" step="0.01" required>
+        <label for="codigo">Cod. do benfeitor:</label><br>
+        <input type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" name="codigo" required>
+        <br><br>
 
-				<button type="submit">Doar agora</button>
-			</form>
-		</section>
-	</main>
+        <label for="valor">Valor:</label><br>
+        <input 
+  type="number" 
+  id="currency" 
+  name="valor" 
+  min="5.00" 
+  step="0.50" 
+  inputmode="decimal" 
+  placeholder="0.00"
+  required
+>
+        <br><br>
+		<p>Selecione o método de doação:</p>
+  
+  <input type="radio" id="pix" name="meio" value="pix" checked>
+  <label aria-label="PIX payment option" for="pix">PIX</label><br>
 
-	<footer>
-		<p>&copy; 2025 Projeto Shien. Todos os direitos reservados.</p>
-	</footer>
+  <input type="radio" id="debito" name="meio" value="debito">
+  <label aria-label="Débito payment option" for="debito">Débito</label><br>
+
+  <input type="radio" id="credito" name="meio" value="credito">
+  <label aria-label="Crédito payment option" for="credito">Crédito</label>
+<br><br>
+        <button type="submit">Submit</button>
+
+    </form>
+
 </body>
+
 </html>
