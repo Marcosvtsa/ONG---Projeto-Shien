@@ -10,7 +10,14 @@ html, body {
 }
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    title{
+        text-align: center;
+        background-color: #f38f1d;
 }
 header{
   background-color: #f38f1d;
