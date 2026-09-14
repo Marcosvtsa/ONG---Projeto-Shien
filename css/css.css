@@ -1,7 +1,10 @@
 html, body {
+    display: flex;
+    flex-direction: column;    
     height: 100%;
     margin: 0;
-    padding: 0;
+    margin-top: auto;
+    padding: 0
     font-family: Arial, sans-serif;
     title{
         text-align: center;
@@ -13,6 +16,7 @@ body {
     flex-direction: column;    
     height: 100%;
     margin: 0;
+    margin-top: auto;
     padding: 0;
     font-family: Arial, sans-serif;
     title{
