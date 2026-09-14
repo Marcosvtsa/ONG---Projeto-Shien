@@ -73,3 +73,61 @@ footer {
   padding: 15px 20px;
   font-size: 0.85rem;
 }
+small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+}input[type="text"],
+input[type="number"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.form-group input[type="radio"] + * {
+    display: inline;
+}
+.button,
+button {
+    display: inline-block;
+    background-color: #f38f1d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button:hover,
+button:hover {
+    background-color: #f89c32;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+.hero,
+.content,
+.form-container {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
