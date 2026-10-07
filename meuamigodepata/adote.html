@@ -1,0 +1,6150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link href="https://googleapis.com" rel="stylesheet">
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Meu Amigo de Pata</title>
+
+
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <!-- ==================== TOPO DO SITE (HEADER) ==================== -->
+<header class="header-principal">
+  <div class="header-logo-area">
+    <img src="imagens/logo/logo.webp" alt="Logo Meu Amigo de Pata" class="site-logo">
+    <span class="site-name"></span>
+  </div>
+  
+  <nav class="header-nav">
+    <a href="institucional.html">Institucional</a>
+    <a href="ongs.html">ONGs/Protetores</a>
+    <a href="unidades.html">Unidades</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+</header>
+
+<!-- ==================== NOVO BANNER PRINCIPAL (HERO) ==================== -->
+<div class="hero-filtros-card">
+
+  <!-- HERO -->
+  <main class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Encontre seu <br>companheiro perfeito
+      </h1>
+
+      <p class="hero-subtitle">
+        Adote um amigo e dê a ele um lar cheio de amor para sempre.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#" class="btn-hero btn-sugestao" onclick="abrirSugestoes(); return false;"> Sugestão</a>
+        <a href="#" class="btn-hero btn-parceiro">Seja Parceiro</a>
+      </div>
+    </div>
+
+     <div class="hero-image-area">
+      <div class="mosaico-imagens">
+        <!-- Duas imagens superiores lado a lado -->
+        <div class="mosaico-topo">
+          <img src="imagens/pets/gatos/machos/arthur_card.webp" alt="Pet Destaque 1" class="pet-img-fixa square pos-1">
+          <img src="imagens/pets/gatos/machos/banguela_card.webp" alt="Pet Destaque 2" class="pet-img-fixa square pos-2">
+        </div>
+        <!-- Imagem retangular abaixo das duas -->
+        <div class="caixa-retangular">
+          <img src="imagens/pets/gatos/femeas/nevasca_card.webp" alt="Banner Pet Destaque" class="pet-img-fixa rectangular pos-3">
+        </div> 
+      </div> 
+    </div> 
+  </main>
+
+<!-- ==================== SEÇÃO DE FILTROS HORIZONTAIS ==================== -->
+<section class="filtros-container">
+  <div class="filtros-topo-linha">
+    <p class="filtros-label">🐾 Filtros para encontrar seu amigo</p>
+    <button class="btn-limpar-filtros" onclick="limparFiltros()">Limpar filtros</button>
+  </div>
+  
+  <div class="filtros-wrapper">
+    
+    <!-- 1. FILTRO DE ESTADO -->
+    <div class="filtro-item-horizontal">
+      <button class="filtro-btn" onclick="toggleFiltroHorizontal(this)">Estado <span class="seta">▼</span></button>
+      <div class="filtro-dropdown-content">
+        <label><input type="radio" name="uf" value="AL" onchange="carregarCidades('AL')"> AL</label>
+        <label><input type="radio" name="uf" value="AM" onchange="carregarCidades('AM')"> AM</label>
+        <label><input type="radio" name="uf" value="BA" onchange="carregarCidades('BA')"> BA</label>
+        <label><input type="radio" name="uf" value="CE" onchange="carregarCidades('CE')"> CE</label>
+        <label><input type="radio" name="uf" value="DF" onchange="carregarCidades('DF')"> DF</label>
+        <label><input type="radio" name="uf" value="ES" onchange="carregarCidades('ES')"> ES</label>
+        <label><input type="radio" name="uf" value="GO" onchange="carregarCidades('GO')"> GO</label>
+        <label><input type="radio" name="uf" value="MA" onchange="carregarCidades('MA')"> MA</label>
+        <label><input type="radio" name="uf" value="MG" onchange="carregarCidades('MG')"> MG</label>
+        <label><input type="radio" name="uf" value="MS" onchange="carregarCidades('MS')"> MS</label>
+        <label><input type="radio" name="uf" value="MT" onchange="carregarCidades('MT')"> MT</label>
+        <label><input type="radio" name="uf" value="PE" onchange="carregarCidades('PE')"> PE</label>
+        <label><input type="radio" name="uf" value="PI" onchange="carregarCidades('PI')"> PI</label>
+        <label><input type="radio" name="uf" value="PR" onchange="carregarCidades('PR')"> PR</label>
+        <label><input type="radio" name="uf" value="RJ" onchange="carregarCidades('RJ')"> RJ</label>
+        <label><input type="radio" name="uf" value="RN" onchange="carregarCidades('RN')"> RN</label>
+        <label><input type="radio" name="uf" value="RS" onchange="carregarCidades('RS')"> RS</label>
+        <label><input type="radio" name="uf" value="SC" onchange="carregarCidades('SC')"> SC</label>
+        <label><input type="radio" name="uf" value="SE" onchange="carregarCidades('SE')"> SE</label>
+        <label><input type="radio" name="uf" value="SP" onchange="carregarCidades('SP')"> SP</label>
+        <label><input type="radio" name="uf" value="TO" onchange="carregarCidades('TO')"> TO</label>
+      </div>
+    </div>
+
+    <!-- 2. FILTRO DE CIDADE -->
+    <div class="filtro-item-horizontal">
+      <button class="filtro-btn" onclick="toggleFiltroHorizontal(this)">Cidade <span class="seta">▼</span></button>
+      <div class="filtro-dropdown-content" id="container-cidades">
+        <!-- O seu JavaScript vai injetar as opções verticais aqui dentro -->
+        <span class="aviso-filtro">Selecione um estado primeiro</span>
+      </div>
+    </div>
+
+    <!-- 3. FILTRO DE LOJAS -->
+    <div class="filtro-item-horizontal">
+      <button class="filtro-btn" onclick="toggleFiltroHorizontal(this)">Lojas <span class="seta">▼</span></button>
+      <div class="filtro-dropdown-content" id="container-lojas">
+        <!-- O seu JavaScript vai injetar as opções verticais aqui dentro -->
+        <span class="aviso-filtro">Selecione uma cidade primeiro</span>
+      </div>
+    </div>
+
+    <!-- 4. FILTRO DE PORTE -->
+    <div class="filtro-item-horizontal">
+      <button class="filtro-btn" onclick="toggleFiltroHorizontal(this)">Porte <span class="seta">▼</span></button>
+      <div class="filtro-dropdown-content">
+        <label><input type="checkbox" name="porte" value="Pequeno" onchange="aplicarFiltros()"> Pequeno</label>
+        <label><input type="checkbox" name="porte" value="Médio" onchange="aplicarFiltros()"> Médio</label>
+        <label><input type="checkbox" name="porte" value="Grande" onchange="aplicarFiltros()"> Grande</label>
+      </div>
+    </div>
+
+    <!-- 5. FILTRO DE SEXO -->
+    <div class="filtro-item-horizontal">
+      <button class="filtro-btn" onclick="toggleFiltroHorizontal(this)">Sexo <span class="seta">▼</span></button>
+      <div class="filtro-dropdown-content">
+        <label><input type="checkbox" name="sexo" value="Fêmea" onchange="aplicarFiltros()"> Fêmea</label>
+        <label><input type="checkbox" name="sexo" value="Macho" onchange="aplicarFiltros()"> Macho</label>
+      </div>
+    </div>
+
+    <!-- 6. FILTRO DE IDADE -->
+    <div class="filtro-item-horizontal">
+      <button class="filtro-btn" onclick="toggleFiltroHorizontal(this)">Idade <span class="seta">▼</span></button>
+      <div class="filtro-dropdown-content">
+        <label><input type="checkbox" name="idade" value="10+" onchange="aplicarFiltros()"> 10 anos ou mais</label>
+        <label><input type="checkbox" name="idade" value="6-9" onchange="aplicarFiltros()"> 6 a 9 anos</label>
+        <label><input type="checkbox" name="idade" value="7m-5a" onchange="aplicarFiltros()"> 7 meses a 5 anos</label>
+        <label><input type="checkbox" name="idade" value="0-6m" onchange="aplicarFiltros()"> 0 a 6 meses</label>
+      </div>
+    </div>
+
+    <!-- 7. FILTRO DE ESPÉCIE -->
+    <div class="filtro-item-horizontal">
+      <button class="filtro-btn" onclick="toggleFiltroHorizontal(this)">Espécie <span class="seta">▼</span></button>
+      <div class="filtro-dropdown-content">
+        <label><input type="checkbox" name="especie" value="Cachorro" onchange="aplicarFiltros()"> Cachorro</label>
+        <label><input type="checkbox" name="especie" value="Gato" onchange="aplicarFiltros()"> Gato</label>
+        <label><input type="checkbox" name="especie" value="Roedor" onchange="aplicarFiltros()"> Roedor</label>
+        <label><input type="checkbox" name="especie" value="Coelho" onchange="aplicarFiltros()"> Coelho</label>
+      </div>
+    </div>
+   </section>
+  </div>
+
+
+
+    <!-- =========================
+         PETS
+    ========================= -->
+
+    <main>
+
+<div id="splash-screen">
+<!-- Faixa SUPERIOR -->
+  <div class="bg-slider top">
+    <img src="imagens/pets/cachorros/femeas/amora.webp" alt="amora">
+    <img src="imagens/pets/cachorros/machos/chico_card.webp" alt="chico">
+    <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="milly">
+    <img src="imagens/pets/cachorros/machos/bento_card.webp" alt="bento">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="nala">
+    <img src="imagens/pets/cachorros/machos/luke_card.webp" alt="luke">
+    <img src="imagens/pets/cachorros/femeas/amora.webp" alt="amora">
+    <img src="imagens/pets/cachorros/machos/chico_card.webp" alt="chico">
+    <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="milly">
+    <img src="imagens/pets/cachorros/machos/bento_card.webp" alt="bento">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="nala">
+    <img src="imagens/pets/cachorros/machos/luke_card.webp" alt="luke">
+   
+    
+</div>
+  <div class="bg-slider center">
+    
+    <img src="imagens/pets/gatos/machos/alfredo_card.webp" alt="alfredo">
+    <img src="imagens/pets/gatos/femeas/mia_card.webp" alt="mia">
+    <img src="imagens/pets/gatos/machos/alvinho_card.webp" alt="alvinho">
+    <img src="imagens/pets/gatos/femeas/mimi_card.webp" alt="mimi">
+    <img src="imagens/pets/gatos/machos/apollo_card.webp" alt="apollo">
+    <img src="imagens/pets/gatos/femeas/sushi_card.webp" alt="sushi">
+    <img src="imagens/pets/gatos/machos/alfredo_card.webp" alt="alfredo">
+    <img src="imagens/pets/gatos/femeas/mia_card.webp" alt="mia">
+    <img src="imagens/pets/gatos/machos/alvinho_card.webp" alt="alvinho">
+    <img src="imagens/pets/gatos/femeas/mimi_card.webp" alt="mimi">
+    <img src="imagens/pets/gatos/machos/apollo_card.webp" alt="apollo">
+    <img src="imagens/pets/gatos/femeas/sushi_card.webp" alt="sushi">
+   
+    </div>
+
+   <div class="bg-slider bottom">
+     <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/mel_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/meg_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/mel_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/meg_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/mel_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/mel_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/meg_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/mel_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/meg_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/milly_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/mel_card.webp" alt="Pet">
+    <img src="imagens/pets/cachorros/femeas/nala_card.webp" alt="Pet">
+      </div>
+
+
+  <div class="logo-container">
+    <img src="imagens\logo\logo.webp" id="logo" alt="Meu Amigo de Pata">
+  </div>
+</div>
+
+
+       
+       
+    
+    <!-- PET SE MEXE AO NÂO APARECER RESULTADOS -->
+<div class="empty-state" id="emptyState" style="display: none; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; padding: 2.5rem; border-radius: 12px; text-align: center; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 2rem;">
+  <div class="dog-box">
+    <div class="ear-left"></div>
+    <div class="ear-right"></div>
+    <div class="dog-head">
+      <div class="eye eye-left"></div>
+      <div class="eye eye-right"></div>
+      <div class="snout">
+        <div class="nose"></div>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="margin: 0.5rem 0 0.25rem 0; color: #333; font-size: 1.2rem;">Nenhum pet encontrado</h4>
+  <p style="margin: 0; color: #666; font-size: 0.9rem;">Tente ajustar ou limpar os filtros para encontrar seu novo amigo.</p>
+</div>
+
+      <div class="pet-grid">
+          
+          
+           <!-- =========================
+             Mel - 14/02/2014
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Alto da Boa Vista"
+          data-porte="Grande"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2014-02-14">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/mel_card.webp"
+            data-foco="center 10%"
+            loading = "lazy"
+            alt="Mel">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+             Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Mel
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Alto da Boa Vista,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade Aproximada:</strong>
+            <span class="idade-animal"></span>
+            </p>
+                       
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Mel',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Alto da Boa Vista, SÃO PAULO, SP',
+                '02/2014',
+                'SRD GD PELO CURTO',
+                'Grande',
+                'imagens/pets/cachorros/femeas/mel_card.webp',
+                'Sou uma vovózinha dócil que ama um carinho na barriga! Apesar de ter perdido alguns dentinhos em uma briga, meu coração está cheio de amor para dar. Quero um lar tranquilo para descansar e ser feliz.'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+         <!-- =========================
+             Minnie - 15/09/2015
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="ITAPECERICA"
+          data-loja="MAP Itapecerica"
+          data-porte="Médio"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2015-09-15">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/minnie_card.webp"
+            loading = "lazy"
+            alt="Minnie">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Minnie
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Itapecerica,<br>
+              ITAPECERICA, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade Aproximada:</strong>
+            <span class="idade-animal"></span>
+            </p>
+                      
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Minnie',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Itapecerica, ITAPECERICA, SP',
+                '09/2015',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/femeas/minnie_modal.webp',
+                'Olá! Eu sou a Minnie, uma mocinha madura, calma e extremamente dócil. O que eu mais amo nessa vida é ganhar um bom carinho na barriga e ficar relaxando perto de quem eu gosto. Estou pronta para levar muita paz e companheirismo para o seu lar!'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+        <!-- =========================
+             Milly - 02/09/2015
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="MOGI DAS CRUZES"
+          data-loja="MAP Mogi das Cruzes"
+          data-porte="Médio"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2015-09-02">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/milly_card.webp"
+            data-foco="center 30%"
+            loading = "lazy"
+            alt="Milly">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Milly
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Mogi das Cruzes,<br>
+              MOGI DAS CRUZES, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Milly',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Mogi das Cruzes, MOGI DAS CRUZES, SP',
+                '09/2015',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/femeas/milly_modal.webp',
+                'Oi amigos! Estou aqui há alguns anos aguardando uma família muito especial. O amor que tenho para dar é tão gigante que nem cabe no meu peito! Você me deixa fazer parte da sua vida? Prometo ser sua companheira mais leal, carinhosa e cheia de alegria!'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+         <!-- =========================
+             Bento - 14/08/2016
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="PRAIA GRANDE"
+          data-loja="MAP Litoral Plaza"
+          data-porte="Grande"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2016-08-14">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/bento_card.webp"
+	    data-foco="center 20%"
+            loading = "lazy"
+            alt="Bento">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Bento
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Litoral Plaza,<br>
+              PRAIA GRANDE, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Bento',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Litoral Plaza, PRAIA GRANDE, SP',
+                '08/2016',
+                'SRD GD PELO CURTO',
+                'Grande',
+                'imagens/pets/cachorros/machos/bento_modal.webp',
+                'Oie! Eu sou um garoto ativo e cheio de energia. Quando cheguei aqui era um pouco tímido, mas os tios logo ganharam meu coração com paciência. Adoro passear, explorar o mundo e, depois que conheço e confio, sou o mestre em pedir carinho!'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+        <!-- =========================
+             Meg - 20/01/2013
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Butantã"
+          data-porte="Médio"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2013-01-20">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/meg_card.webp"
+	    data-foco="center 40%"
+            loading = "lazy"
+            alt="Meg">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Meg
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Butantã,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+           
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Meg',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Butantã, SÃO PAULO, SP',
+                '01/2013',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/femeas/meg_modal.webp',
+                'Olá, amigos! Me chamo Meg e sou uma vovózinha cheia de doçura e histórias para contar. Sou conhecida por todos aqui por ser extremamente boazinha, calma e por amar distribuir lambeijos e carinho por onde passo. Me adota?'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+        <!-- =========================
+             Luke - 17/07/2016
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Alto da Boa Vista"
+          data-porte="Pequeno"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2016-07-17">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/luke_card.webp"
+	    data-foco="center 10%"
+            loading = "lazy"
+            alt="Luke">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Luke
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Alto da Boa Vista,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Luke',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Alto da Boa Vista, SÃO PAULO, SP',
+                '07/2009',
+                'SRD PEQ PELO CURTO',
+                'Pequeno',
+                'imagens/pets/cachorros/machos/luke_modal.webp',
+                'Oi! Eu sou o Luke, um companheiro de porte pequeno, ideal para qualquer tamanho de lar! Já passei daquela fase de bagunça de filhote e sou o parceiro perfeito para caminhadas tranquilas e tardes de cochilo no sofá do seu lado.'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        <!-- =========================
+             Bella - 23/05/2016
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SOROCABA"
+          data-loja="MAP Sorocaba"
+          data-porte="Pequeno"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2016-05-23">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/bella_card.webp"
+	    data-foco="center 25%"
+            loading = "lazy"
+            alt="Bella">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Bella
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Sorocaba,<br>
+              SOROCABA, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+           
+
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Bella',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Sorocaba, SOROCABA, SP',
+                '05/2016',
+                'SRD PEQ PELO CURTO',
+                'Pequeno',
+                'imagens/pets/cachorros/femeas/bella_modal.webp',
+                'Olá, amigos! Me chamo Bella e sou uma princesinha de porte pequeno cheia de doçura. Sou conhecida por ser extremamente boazinha, comportada e amo receber carinho por onde passo. Vamos ser felizes juntos?'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        <!-- =========================
+             Chico - 07/2016
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SOROCABA"
+          data-loja="MAP Sorocaba"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2016-07-13">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/chico_card.webp"
+            loading = "lazy"
+            alt="Chico">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Chico
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+             MAP Sorocaba,<br>
+              SOROCABA, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'chico',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Sorocaba, SOROCABA, SP',
+                '07/2016',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/chico_modal.webp',
+                'Olá, titios! Eu sou o Chico, um senhorzinho calmo e muito companheiro. Adoro ganhar um chamego e ficar quietinho por perto fazendo companhia. Sou um pouco tímido no começo, mas depois que confio, entrego todo o meu coração!'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        <!-- =========================
+             Otto - 21/10/2015
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Augusta"
+          data-porte="Pequeno"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2015-10-21">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/otto_card.webp"
+            data-foco=" center 60%"
+            loading = "lazy"
+            alt="Otto">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Otto
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Augusta,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Otto',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Augusta, SÃO PAULO, SP',
+                '10/2015',
+                'SRD PEQ PELO CURTO',
+                'Pequeno',
+                'imagens/pets/cachorros/machos/otto_modal.webp',
+                'Muito prazer, eu sou o Otto! No passado passei por momentos difíceis e passei a ter medo das pessoas, mas nada que paciência, amor e carinho não resolvam. Que tal me dar uma chance?'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+               
+        <!-- =========================
+             Maylou - 15/03/2015
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="RIBEIRAO PRETO"
+          data-loja="MAP Presidente Vargas"
+          data-porte="Grande"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2015-03-15">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/maylou_card.webp"
+            data-foco=" center 20%"
+            loading = "lazy"
+            alt="Maylou">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Maylou
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Presidente Vargas,<br>
+              RIBEIRAO PRETO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Maylou',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Presidente Vargas, RIBEIRAO PRETO, SP',
+                '03/2015',
+                'SRD GD PELO CURTO',
+                'Grande',
+                'imagens/pets/cachorros/machos/maylou_modal.webp',
+                'Oi turma! Pensem em um cãozinho dócil, calmo e extremamente companheiro. Pensaram? Prazer, esse sou eu, prontinho para levar muita paz para o seu lar!'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             Nala - 28/05/2014
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Anhaia Mello"
+          data-porte="Pequeno"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2014-05-28">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/nala_card.webp"
+            data-foco=" center 20%"
+            loading = "lazy"
+            alt="Nala">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+             Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Nala
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Anhaia Mello,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Nala',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Anhaia Mello, SÃO PAULO, SP',
+                '05/2014',
+                'SRD MD PELO CURTO',
+                'pequeno',
+                'imagens/pets/cachorros/femeas/nala_modal.webp',
+                'Oi amigos! Sou uma mocinha um pouco tímida e assustada no começo, mas meu coração transborda amor.'
+
+
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+        <!-- =========================
+             Zeus - 28/05/2014
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Bandeirantes"
+          data-porte="Grande"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2016-10-28">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/zeus_card.webp"
+            data-foco=" center 20%"
+            loading = "lazy"
+            alt="Zeus">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Zeus
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Bandeirantes,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Zeus',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Bandeirantes, SÃO PAULO, SP',
+                '10/2016',
+                'SRD GD PELO CURTO',
+                'Grande',
+                'imagens/pets/cachorros/machos/zeus_modal.webp',
+                'Oi pessoal, quero me apresentar! Eu sou o Zeus, um garotão lindo, imponente e cheio de energia para compartilhar. Sou muito dócil, adoro passear e estou ansioso para me tornar o seu melhor amigo de todas as horas!'
+                
+        
+
+              )">
+
+             Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+        <!-- =========================
+             Toby - 21/08/2017
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Alto da Boa Vista"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2017-08-21">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/toby_card.webp"
+            data-foco=" center 60%"
+            loading = "lazy"
+            alt="Toby">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Toby
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Alto da Boa Vista,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Toby',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Alto da Boa Vista, SÃO PAULO, SP',
+                '08/2017',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/toby_modal.webp',
+                'Oi amigos! Sem querer me gabar, mas eu sou o pacote completo: super meigo, carinhoso, obediente e um companheiro para todas as horas. Confesso que sou bem carente e meu maior sonho é um cantinho para receber amor o dia todo!'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+        
+        <!-- =========================
+             floquinho- 16/03/2021
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Alto da Boa Vista"
+          data-porte="Pequeno"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2021-03-16">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/floquinho_card.webp"
+            data-foco=" center 60%"
+            loading = "lazy"
+            alt="Floquinho">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Floquinho
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Alto da Boa Vista,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Floquinho',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Alto da Boa Vista, SÃO PAULO, SP',
+                '03/2021',
+                'SRD PEQ PELO CURTO',
+                'Pequeno',
+                'imagens/pets/cachorros/machos/floquinho_modal.webp',
+                'Oi gente! Sou um pouco desconfiado e na minha, mas com paciência e amor fui me soltando. Hoje, já mostro para todo mundo o quanto sou um garoto carinhoso, alegre e muito parceiro para o dia a dia!'
+                
+        
+
+              )">
+
+             Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+         <!-- =========================
+             Pandora - 24/01/2019
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Anália Franco"
+          data-porte="Grande"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2019-01-24">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/pandora_card.webp"
+            data-foco=" center 40%"
+            loading = "lazy"
+            alt="Pandora">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Pandora
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+             MAP Anália Franco,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Pandora',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Anália Franco, SÃO PAULO, SP',
+                '01/2019',
+                'SRD GD PELO CURTO',
+                'Grande',
+                'imagens/pets/cachorros/femeas/pandora_modal.webp',
+                'Olá, tios! Eu sou uma grandona muito boazinha e inteligente. Convivo bem com outros cães, mas tenho uma personalidade forte e dominante. Que tal me conhecer?'
+
+
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+         <!-- =========================
+             Nina - 25/05/2018
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO CARLOS"
+          data-loja="MAP São Carlos"
+          data-porte="Médio"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2018-05-25">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/nina_card.webp"
+            data-foco=" center 30%"
+            loading = "lazy"
+            alt="Nina">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Nina
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP São Carlos,<br>
+              SÃO CARLOS, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+           
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Nina',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP São Carlos, SÃO CARLOS, SP',
+                '05/2018',
+                'SRD MD PELO CURTO',
+                'Pequeno',
+                'imagens/pets/cachorros/femeas/nina_modal.webp',
+                'Olá, tios! Sou uma linda mocinha, carinhosa, leal e cheia de vida. Mantenho viva no meu coração a esperança de ser escolhida por uma família muito especial para podermos compartilhar muito amor e momentos felizes. Me dá uma chance?'
+
+
+                
+        
+
+              )">
+
+             Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+         <!-- =========================
+             Apolo - 29/01/2018
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO BERNADO DO CAMPO"
+          data-loja="MAP Pereira Barreto"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2018-01-29">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/apolo_card.webp"
+            data-foco ="center 30%"
+            loading = "lazy"
+            alt="Apolo">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Apolo
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Pereira Barreto,<br>
+              SÃO BERNADO DO CAMPO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Apolo',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Pereira Barreto, SÃO BERNADO DO CAMPO, SP',
+                '01/2018',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/apolo_modal.webp',
+                'Olá, pessoal! Eu sou o Apolo, um garotão muito bonzinho e carinhoso. Sofri uma amputação no passado e não tenho uma das patinhas da frente, mas isso não afeta em nada minha vontade de viver! Prefiro ser o único pet da casa, pois não sou fã de outros cães. Vamos nos conhecer?'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+         <!-- =========================
+             Butley - 23/02/2018
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SANTOS"
+          data-loja="MAP Ana Costa"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2018-02-23">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/butley_card.webp"
+            data-foco=" center 10%"
+            loading = "lazy"
+            alt="Butley">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Butley
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Ana Costa,<br>
+              SANTOS, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Butley',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Ana Costa, SANTOS, SP',
+                '02/2018',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/butley_modal.webp',
+                'Oi, titios! Eu sou o Butley, um cãozinho calmo, sossegado e muito dócil. Confesso que, apesar do meu tamanho, sou um pouco tímido e medroso no começo. Mas basta um pouquinho de paciência para eu me soltar e mostrar o quanto sou carinhoso e leal. Me adota?'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+        
+        <!-- =========================
+             Billy - 23/02/2018
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="ITAPECERICA"
+          data-loja="MAP Itapecerica"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2018-02-23">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/billy_card.webp"
+            data-foco=" center 10%"
+            loading = "lazy"
+            alt="Billy">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Billy
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Itapecerica,<br>
+              ITAPECERICA, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Billy',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Itapecerica, ITAPECERICA, SP',
+                '02/2018',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/billy_modal.webp',
+                'Oi, turma! Eu sou o Billy, um doguinho extremamente dócil, brincalhão e bonzinho. Tenho uma leve e charmosa sequela em uma das patinhas da frente que é meu charme especial, mas que não me impede em nada de correr, passear e ser muito feliz do seu lado!'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+        
+         <!-- =========================
+             Theo - 15/06/2020
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="GUARULHOS"
+          data-loja="MAP Guarulhos"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2020-06-15">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/theo_card.webp"
+            data-foco=" center 50%"
+            loading = "lazy"
+            alt="Theo">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                  Theo
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Guarulhos,<br>
+              GUARULHOS, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+            
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Theo',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Guarulhos, GUARULHOS, SP',
+                '06/2020',
+                'SRD MD PELO MÉDIO',
+                'Médio',
+                'imagens/pets/cachorros/machos/theo_modal.webp',
+                'Oi amigos! Eu sou o Theo, um parceiro de porte médio super bonzinho e cheio de energia para compartilhar. A coisa que eu mais amo no mundo é receber a atenção e o carinho dos humanos. Topa ser meu companheiro de aventuras e me dar um lar cheio de amor? Me adota, vai?!'
+                
+        
+
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+
+ <!-- ==========
+            Simba - 11/06/2026
+        =========== -->
+
+        <div
+        class="card"
+
+          data-estado="SP"
+          data-cidade="CAMPINAS"
+          data-loja="MAP Dom Pedro"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2026-06-11">
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/simba_card.webp"
+            data-foco=" center 25%"
+            loading = "lazy"
+            alt="Simba">
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+            <div class="card-title-row">
+              <span class="card-title">
+                Simba
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+            </div>
+
+            <p class="card-location">
+              MAP Dom Pedro,<br>
+              CAMPINAS, SP
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+
+            <button
+              class="btn-orange"
+              onclick="openModal(
+                'Simba',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Dom Pedro, CAMPINAS, SP',
+                '06/2026',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/simba_modal.webp',
+                'Oie! Eu sou o Simba, um filhotão muito carinhoso, brincalhão e transbordando aquela energia gostosa de quem quer descobrir o mundo. Estou procurando uma família bem especial, disposta a me dar muito amor, paciência e diversão para eu crescer muito feliz ao seu lado!'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!--============== 
+              MAX - 16/05/2026
+        ===============-->
+
+       <div
+        class="card"
+
+          data-estado="SP"
+          data-cidade="BAURU"
+          data-loja="MAP Bauru"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2022-05-16">
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/max(2)_card.webp"
+	    data-foco="center 40%"
+            loading = "lazy"
+            alt="Max">
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Max
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+            <p class="card-location">
+              MAP Bauru,<br>
+              BAURU, SP
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+
+            <button
+              class="btn-orange"
+              
+              onclick="openModal(
+                'Max',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Bauru, BAURU, SP',
+                '05/2026',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/max(2)_modal.webp',
+                'Olá, pessoal! Eu sou o Max, um garoto de porte médio extremamente carinhoso, sociável e fascinado por brincadeiras. Adoro fazer novas amizades e estou ansioso esperando por uma família que queira um companheiro leal para preencher a casa com muita alegria e cafuné!'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+      
+       
+     
+      
+      <!--==============
+          Faísca - 18/06/2024 
+      ===============-->
+
+       <div
+        class="card"
+
+          data-estado="RJ"
+          data-cidade="RIO DE JANEIRO"
+          data-loja="MAP Barra da Tijuca"
+          data-porte="Médio"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2024-06-18">
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/faisca.webp"
+            data-foco=" center 5%"
+            loading = "lazy"
+            alt="Faísca">
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Faísca
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+            <p class="card-location">
+              MAP Barra da Tijuca,<br>
+              RIO DE JANEIRO, RJ
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+
+            <button
+              class="btn-orange"
+              
+              onclick="openModal(
+                'Faísca',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Barra da Tijuca, RIO DE JANEIRO, RJ',
+                '06/2024',
+                'SRD MD PELO CURTO',
+                'Médio',
+                'imagens/pets/cachorros/machos/faisca.webp',
+                'Oie! Eu sou o Faísca, um garoto de porte médio super carinhoso, brincalhão e muito bem educado. Sou mestre em fazer aquela carinha de coitado irresistível para ganhar um bom cafuné. Que tal me dar uma chance e me encher de amor?'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             babi - 29/03/2026
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO JOSE DO RIO PRETO"
+          data-loja="MAP São José do Rio Preto"
+          data-porte="Grande"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2026-03-29">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/babi_card.webp"
+            data-foco=" center 70%"
+            loading = "lazy"
+            alt="Babi">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Babi
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP São José do Rio Preto,<br>
+             SAO JOSE DO RIO PRETO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Babi',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP São José do Rio Preto, SAO JOSE DO RIO PRETO, SP',
+                '03/2026',
+                'SRD PEQ PELO CURTO',
+                'Grande',
+                'imagens/pets/cachorros/femeas/babi_modal.webp',
+                'Oi, pessoal! Eu sou a Babi, uma linda menina dócil, super brincalhona e que já está com as vacinas em dia! Estou ansiosa procurando um lar bem amoroso, seguro e cheio de carinho para crescer muito feliz com a minha nova família!'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             Micha - 07/06/2026
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="SP"
+          data-cidade="SAO PAULO"
+          data-loja="MAP Bandeirantes"
+          data-porte="Médio"
+          data-sexo="Fêmea"
+          data-especie="Cachorro"
+          data-nascimento="2026-06-07">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/femeas/micha_card.webp"
+            data-foco=" center 10%"
+            loading = "lazy"
+            alt="Micha">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                 Micha
+              </span>
+
+              <span class="card-sex">
+                ♀
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Bandeirantes ,<br>
+              SÃO PAULO, SP
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Micha',
+                '♀',
+                'Meu Amigo de Pata',
+                'MAP Bandeirantes , SÃO PAULO, SP',
+                '06/2026',
+                'SRD MD PELO CURTO',
+                'médio',
+                'imagens/pets/cachorros/femeas/micha_modal.webp',
+                'Olá, titios! Eu sou a Micha, uma mocinha de porte médio muito comportada, dócil e já castrada. Sou super sociável com outros amiguinhos pets e estou pronta para levar muita paz, lealdade e parceria para a sua rotina!'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             Pitoco - 25/06/2026
+        ========================= -->
+
+        <div
+          class="card"
+
+          data-estado="DF"
+          data-cidade="BRASILIA"
+          data-loja="MAP Taguatinga"
+          data-porte="Grande"
+          data-sexo="Macho"
+          data-especie="Cachorro"
+          data-nascimento="2026-06-25">
+
+
+          <img
+            class="card-img"
+            src="imagens/pets/cachorros/machos/pitoco_card.webp"
+            data-foco=" center 5%"
+            loading = "lazy"
+            alt="Pitoco">
+
+
+          <div class="card-body">
+
+            <span class="card-ong">
+              Meu Amigo de Pata
+            </span>
+
+
+            <div class="card-title-row">
+
+              <span class="card-title">
+                Pitoco
+              </span>
+
+              <span class="card-sex">
+                ♂
+              </span>
+
+            </div>
+
+
+            <p class="card-location">
+
+              MAP Taguatinga,<br>
+              BRASILIA, DF
+
+            </p>
+            
+            <p class="card-nascimento">
+                <strong>Idade:</strong>
+            <span class="idade-animal"></span>
+            </p>
+
+
+            <button
+              class="btn-orange"
+
+              onclick="openModal(
+                'Pitoco',
+                '♂',
+                'Meu Amigo de Pata',
+                'MAP Taguatinga, BRASILIA, DF',
+                '06/2026',
+                'SRD GD PELO CURTO',
+                'Grande',
+                'imagens/pets/cachorros/machos/pitoco_modal.webp',
+                'Oie! Eu sou o Pitoco, um garotão ativo, brincalhão e super carinhoso. Sou o companheiro perfeito para correr, se divertir e encher a casa de alegria, sendo excelente para famílias com crianças. Vamos brincar juntos?'
+              )">
+
+              Mais informações
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+     Pingo - 02/05/2026
+========================= -->
+
+<div
+  class="card"
+
+  data-estado="RJ"
+  data-cidade="RIO DE JANEIRO"
+  data-loja="MAP Ipanema"
+  data-porte="Médio"
+  data-sexo="Macho"
+  data-especie="Cachorro"
+  data-nascimento="2026-05-02">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/cachorros/machos/pingo_card.webp"
+            data-foco=" center 40%"
+    loading = "lazy"
+    alt="Pingo">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Pingo
+      </span>
+
+      <span class="card-sex">
+        ♂
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Ipanema,<br>
+      RIO DE JANEIRO, RJ
+
+    </p>
+    
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Pingo',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Ipanema, RIO DE JANEIRO, RJ',
+        '05/2026',
+        'SRD MD PELO CURTO',
+        'Médio',
+        'imagens/pets/cachorros/machos/pingo_modal.webp',
+        'Olá, pessoal! Eu sou o Pingo, um parceiro de porte médio extremamente dócil e adaptável, ideal tanto para a rotina de apartamentos quanto para o espaço de grandes casas. Estou prontinho para ser seu companheiro fiel de todas as horas!'
+      )">
+
+     Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+
+
+        <!-- =========================
+     Cacau - 07/07/2026
+========================= -->
+
+<div
+  class="card"
+
+  data-estado="RJ"
+  data-cidade="SAO GONCALO"
+  data-loja="MAP Centro"
+  data-porte="Médio"
+  data-sexo="Fêmea"
+  data-especie="Cachorro"
+  data-nascimento="2026-07-07">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/cachorros/femeas/cacau_card.webp"
+    data-foco=" center 20%"
+    loading = "lazy"
+    alt="Cacau">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Cacau
+      </span>
+
+      <span class="card-sex">
+        ♀
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Centro,<br>
+      SAO GONÇALO, RJ
+
+    </p>
+    
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Cacau',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Centro, SAO GONÇALO, RJ',
+        '07/2026',
+        'SRD MD PELO CURTO',
+        'Médio',
+        'imagens/pets/cachorros/femeas/cacau_modal.webp',
+        'Oi, amigos! Eu sou a Cacau, uma linda mocinha cheia de energia, carinhosa e totalmente pronta para ser adotada! Adoro interagir com humanos e mal posso esperar para encontrar uma família especial para encher de lambeijos!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+
+
+       <!-- =========================
+     Max - 25/06/2026
+========================= -->
+
+<div
+  class="card"
+
+  data-estado="RJ"
+  data-cidade="RIO DE JANEIRO"
+  data-loja="MAP Copacabana"
+  data-porte="Médio"
+  data-sexo="Macho"
+  data-especie="Cachorro"
+  data-nascimento="2026-06-25">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/cachorros/machos/max_card.webp"
+     data-foco=" center 33%"
+    loading = "lazy"
+    alt="Max">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Max
+      </span>
+
+      <span class="card-sex">
+        ♂
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Copacabana,<br>
+      RIO DE JANEIRO, RJ
+
+    </p>
+    
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Max',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Copacabana, RIO DE JANEIRO, RJ',
+        '06/2026',
+        'SRD MD PELO CURTO',
+        'Médio',
+        'imagens/pets/cachorros/machos/max_modal.webp',
+        'Muito prazer, eu sou o Max! Apesar de ser um filhotão, eu sou um garoto calmo e sossegado. Sou o companheiro ideal para quem busca a tranquilidade de um amigo leal para assistir TV junto e relaxar no sofá!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+        
+        
+        <!-- =========================
+             Mia - 15/01/2025
+        ========================= -->
+
+<div
+  class="card"
+
+  data-estado="RJ"
+  data-cidade="RIO DE JANEIRO"
+  data-loja="MAP Barra da Tijuca"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-01-15">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/mia_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Mia">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Mia
+      </span>
+
+      <span class="card-sex">
+        ♀
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Barra da Tijuca,<br>
+      RIO DE JANEIRO, RJ
+
+    </p>
+    
+    <p class="card-nascimento">
+        <strong>Idade:</strong>
+    <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Mia',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Barra da Tijuca, RIO DE JANEIRO, RJ',
+        '01/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/mia_modal.webp',
+        'Olá, tios! Eu sou a Mia, uma gatinha de porte pequeno que é pura doçura. Sou extremamente dócil, carinhosa e adoro um cantinho calmo para tirar meus cochilos. Estou procurando um lar amoroso para compartilhar meu ronrom!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+             ALVINHO - 22/08/2024
+        ========================= -->
+
+<div
+  class="card"
+
+  data-estado="MG"
+  data-cidade="BELO HORIZONTE"
+  data-loja="MAP Savassi"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2024-08-22">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/alvinho_card.webp"
+    loading = "lazy"
+    alt="Alvinho">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Alvinho
+      </span>
+
+      <span class="card-sex">
+        ♂
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Savassi,<br>
+      BELO HORIZONTE, MG
+
+    </p>
+    
+    <p class="card-nascimento">
+        <strong>Idade:</strong>
+    <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Alvinho',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Savassi, BELO HORIZONTE, MG',
+        '08/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/alvinho_modal.webp',
+        'Oie! Eu sou o Alvinho, um gatinho super curioso, brincalhão e cheio de energia para gastar. O que eu mais amo no mundo é ter companhia para me divertir e me dar atenção. Estou prontinho para encher sua rotina de alegria e muitos momentos felizes!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+             Mimi - 03/03/2026
+        ========================= -->
+
+<div
+  class="card"
+
+  data-estado="SP"
+  data-cidade="DIADEMA"
+  data-loja="MAP Diadema"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2026-03-03">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/mimi_card.webp"
+    data-foco=" center 20%"
+    loading = "lazy"
+    alt="Mimi">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Mimi
+      </span>
+
+      <span class="card-sex">
+        ♀
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Diadema,<br>
+      DIADEMA, SP
+
+    </p>
+    
+    <p class="card-nascimento">
+        <strong>Idade:</strong>
+    <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Mimi',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Diadema, DIADEMA, SP',
+        '03/2026',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/mimi_modal.webp',
+        'Olá, tios! Eu sou a Mimi, uma princesinha calma, dócil e extremamente meiga. Sou fascinada por cantinhos tranquilos, confortáveis e aconchegantes para tirar minhas sonecas. Procuro um lar amoroso para compartilhar meu ronrom bem baixinho!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+             Alfredo - 17/11/2024
+        ========================= -->
+
+<div
+  class="card"
+
+  data-estado="SP"
+  data-cidade="FRANCA"
+  data-loja="MAP Franca"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2024-11-17">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/alfredo_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Alfredo">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Alfredo
+      </span>
+
+      <span class="card-sex">
+        ♂
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Franca,<br>
+      FRANCA, SP
+
+    </p>
+    
+    <p class="card-nascimento">
+        <strong>Idade:</strong>
+    <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Alfredo',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Franca, FRANCA, SP',
+        '11/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/alfredo_modal.webp',
+        'Oi, pessoal! Eu sou o Alfredo, um jovem gatinho super ativo, desbravador e muito brincalhão. Adoro correr atrás de bolinhas e descobrir coisas novas pela casa. Estou super ansioso esperando por uma família nota dez para me adotar!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+            Sushi - 28/02/2022
+        ========================= -->
+
+<div
+  class="card"
+
+  data-estado="SP"
+  data-cidade="SAO PAULO"
+  data-loja="MAP Alto da Boa Vista"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2022-02-28">
+
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/sushi_card.webp"
+    data-foco=" center 30%"
+    loading = "lazy"
+    alt="Sushi">
+
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+
+    <div class="card-title-row">
+
+      <span class="card-title">
+        Sushi
+      </span>
+
+      <span class="card-sex">
+        ♀
+      </span>
+
+    </div>
+
+
+    <p class="card-location">
+
+      MAP Alto da Boa Vista,<br>
+      SÃO PAULO, SP
+
+    </p>
+    
+    <p class="card-nascimento">
+        <strong>Idade:</strong>
+    <span class="idade-animal"></span>
+    </p>
+
+
+    <button
+      class="btn-orange"
+
+      onclick="openModal(
+        'Sushi',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Alto da Boa Vista, SÃO PAULO, SP',
+        '02/2022',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/sushi_modal.webp',
+        'Muito prazer, eu sou a Sushi! Sou uma gatinha muito tranquila, companheira e dona de um temperamento super doce e carinhoso. Sou o pacote perfeito de calmaria para quem procura uma amiga leal para ficar deitadinha do lado no sofá!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+
+</div>
+
+
+    <!-- =========================
+             pandora - 15/01/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="AL"
+  data-cidade="MACEIO"
+  data-loja="MAP Ponta Verde"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-01-15">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/pandora_card.webp"
+    data-foco=" center 30%"
+    loading = "lazy"
+    alt="Pandora">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Pandora
+      </span>
+
+
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Ponta Verde,<br>
+      MACEIÓ, AL
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Pandora',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Ponta Verde, MACEIÓ, AL',
+        '01/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/pandora_modal.webp',
+        'Olá, amigos! Eu sou a Pandora, uma gatinha encantadora, dócil e super companheira. Adoro interagir com humanos, ganhar carinho na cabeça e estou contando os dias para encontrar uma família especial e ganhar um lar definitivo!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Apollo - 22/08/2022
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="AM"
+  data-cidade="MANAUS"
+  data-loja="MAP Ponta Negra"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2022-08-22">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/apollo_card.webp"
+    loading = "lazy"
+    alt="Apollo">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Apollo
+      </span>
+
+
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Ponta Negra,<br>
+      MANAUS, AM
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Apollo',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Ponta Negra, MANAUS, AM',
+        '08/2022',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/apollo_modal.webp',
+        'Oi, pessoal! Eu sou o Apollo, um gatinho super brincalhão, curioso e cheio de charme. Adoro ser o centro das atenções, ganhar carinho e descobrir cada cantinho novo. Estou prontinho para levar muita alegria e companhia para a sua vida!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Atena - 03/05/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="BA"
+  data-cidade="SALVADOR"
+  data-loja="MAP Paralela"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-05-03">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/atena_card.webp"
+    data-foco=" center 25%"
+    loading = "lazy"
+    alt="Atena">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Atena
+      </span>
+
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Paralela,<br>
+      SALVADOR, BA
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Atena',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Paralela, SALVADOR, BA',
+        '05/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/atena_modal.webp',
+        'Olá, tios! Eu sou a Atena, uma gatinha extremamente meiga, dócil e afetuosa. O meu esporte favorito é ganhar um bom cafuné e retribuir com muito amor e companheirismo. Procuro uma família carinhosa para encher de ronrons!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Apolo - 17/11/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="CE"
+  data-cidade="FORTALEZA"
+  data-loja="MAP Aldeota"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-11-17">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/apolo_card.webp"
+    data-foco=" center 2%"
+    loading = "lazy"
+    alt="Apolo">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Apolo
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Aldeota,<br>
+      FORTALEZA, CE
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Apolo',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Aldeota, FORTALEZA, CE',
+        '11/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/apolo_modal.webp',
+        'Oie! Eu sou o Apolo, um gatinho jovem, alegre e super animado. Adoro uma boa brincadeira com bolinhas ou arranhadores e estou com o coração aberto, prontinho para encontrar o meu novo lar. Vamos ser melhores amigos?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Zoe - 28/08/2022
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="DF"
+  data-cidade="BRASILIA"
+  data-loja="MAP Eixo Monumental"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2022-08-28">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/zoe_card.webp"
+    data-foco="center 50%"
+    loading = "lazy"
+    alt="Zoe">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Zoe
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Eixo Monumental,<br>
+      BRASÍLIA, DF
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Zoe',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Eixo Monumental, BRASÍLIA, DF',
+        '08/2022',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/zoe_modal.webp',
+        'Muito prazer, eu sou a Zoe! Sou uma gatinha calma, muito amorosa e aquela companheira perfeita para todas as horas do dia. Se você procura uma amiga leal, doce e que ama interagir de forma tranquila, eu sou a escolha certa!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Arquimedes - 09/07/2019
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="ES"
+  data-cidade="SERRA"
+  data-loja="MAP Laranjeiras"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2019-07-09">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/arquimedes_card.webp"
+    data-foco=" center 1%"
+    loading = "lazy"
+    alt="Arquimedes">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Arquimedes
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Laranjeiras,<br>
+      SERRA, ES
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Arquimedes',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Laranjeiras, SERRA, ES',
+        '07/2019',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/arquimedes_modal.webp',
+        'Olá, amigos! Eu sou o Arquimedes, um rapaz esperto, muito carinhoso e cheio de personalidade própria. Adoro gastar minha energia brincando e depois deitar bem pertinho para ganhar carinho. Que tal me dar uma chance?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Chloe - 10/05/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="GO"
+  data-cidade="GOIANIA"
+  data-loja="MAP Flamboyant"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-05-10">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/chloe_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Chloe">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Chloe
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Flamboyant,<br>
+      GOIÂNIA, GO
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Chloe',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Flamboyant, GOIÂNIA, GO',
+        '05/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/chloe_modal.webp',
+        'Olá, tios! Eu sou a Chloe, uma gatinha muito doce, delicada e cheia de carinho para dar. Eu me sinto muito melhor em ambientes tranquilos e sossegados, onde posso relaxar e ganhar aquele dengo na cabeça. Vamos ser felizes juntos?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Arthur - 11/03/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="MA"
+  data-cidade="SAO LUIS"
+  data-loja="MAP Renascença"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-03-11">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/arthur_card.webp"
+    loading = "lazy"
+    alt="Arthur">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Arthur
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Renascença,<br>
+      SÃO LUÍS, MA
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Arthur',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Renascença, SÃO LUÍS, MA',
+        '03/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/arthur_modal.webp',
+        'Oie! Eu sou o Arthur, um gatinho super ativo, brincalhão e incrivelmente simpático. Minha atividade favorita é explorar novos lugares e descobrir brinquedos diferentes pela casa. Estou super ansioso para achar uma família para me adotar!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Banguela - 12/02/2026
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="MG"
+  data-cidade="BELO HORIZONTE"
+  data-loja="MAP Pampulha"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2026-02-12">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/banguela_card.webp"
+    loading = "lazy"
+    alt="Banguela">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Banguela
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Pampulha,<br>
+      BELO HORIZONTE, MG
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Banguela',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Pampulha, BELO HORIZONTE, MG',
+        '02/2026',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/banguela_modal.webp',
+        'Muito prazer, eu sou o Banguela! Sou um gatinho calmo, muito afetuoso e o companheiro perfeito para todas as horas. Adoro ficar por perto recebendo carinho e prometo preencher a sua casa com muito companheirismo e paz!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Fumaça - 07/10/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="MG"
+  data-cidade="UBERLANDIA"
+  data-loja="MAP Santa Mônica"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-10-07">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/fumaça_card.webp"
+    data-foco=" center 5%"
+    loading = "lazy"
+    alt="Fumaça">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Fumaça
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Santa Mônica,<br>
+      UBERLANDIA, MG
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'fumaça',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Santa Mônica, UBERLANDIA, MG',
+        '10/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/fumaça_modal.webp',
+        'Oi, pessoal! Eu sou a Fumaça, uma mocinha gentil, dócil e extremamente carinhosa. Sou conhecida por ser muito boazinha e estou com o coração cheio de esperança, esperando por uma família bem especial para me acolher!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Benn - 14/04/2023
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="MT"
+  data-cidade="CUIABA"
+  data-loja="MAP Jardim das Américas"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2023-04-14">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/benn_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Benn">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Benn
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Jardim das Américas,<br>
+      CUIABA, MT
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Benn',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Jardim das Américas, CUIABA, MT',
+        '04/2023',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/benn_modal.webp',
+        'Olá, amigos! Eu sou o Benn, um gatinho inteligente, muito divertido e transbordando energia. Adoro inventar brincadeiras e interagir com todo mundo ao meu redor. Se você quer uma casa alegre e movimentada, eu sou o parceiro ideal!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Luna - 30/09/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="PE"
+  data-cidade="RECIFE"
+  data-loja="MAP Boa Viagem"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-09-30">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/luna_card.webp"
+    data-foco=" center 15%"
+    loading = "lazy"
+    alt="Luna">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Luna
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Boa Viagem,<br>
+      RECIFE, PE
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Luna',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Boa Viagem, RECIFE, PE',
+        '09/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/luna_modal.webp',
+        'Olá, pessoal! Eu sou a Luna, uma gatinha extremamente amorosa, calma e dócil. O que eu mais gosto nessa vida é ficar bem pertinho dos humanos, acompanhando a rotina e ganhando aquele cafuné gostoso. Vamos ser companheiras?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             CHICO - 18/01/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="PR"
+  data-cidade="CURITIBA"
+  data-loja="MAP Batel"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-01-18">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/chico_card.webp"
+    data-foco=" center 5%"
+    loading = "lazy"
+    alt="Chico">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Chico
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Batel,<br>
+      CURITIBA, PR
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Chico',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Batel, CURITIBA, PR',
+        '01/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/chico_modal.webp',
+        'Oie! Eu sou o Chico, um gatinho amigável, muito brincalhão e super parceiro. Sou o mestre em correr atrás de bolinhas e adoro interagir com todo mundo. Estou ansioso esperando por uma família para encher a casa de alegria!'
+      )">
+
+     Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Aurora - 05/08/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="RJ"
+  data-cidade="RIO DE JANEIRO"
+  data-loja="MAP Copacabana"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-08-05">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/aurora_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Aurora">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Aurora
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Copacabana,<br>
+      RIO DE JANEIRO, RJ
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Aurora',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Copacabana, RIO DE JANEIRO, RJ',
+        '08/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/aurora_modal.webp',
+        'Oi, titios! Eu sou a Aurora, uma mocinha jovem, doce e cheia de carinho para compartilhar. Estou com o coração aberto e totalmente pronta para encontrar uma família muito especial. Que tal me dar uma chance de te fazer feliz?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Dado - 12/12/2021
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="RN"
+  data-cidade="NATAL"
+  data-loja="MAP Tirol"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2021-12-12">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/dado_card.webp"
+    loading = "lazy"
+    alt="Dado">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Dado
+      </span>
+     <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Tirol,<br>
+      NATAL, RN
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Dado',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Tirol, NATAL, RN',
+        '12/2021',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/dado_modal.webp',
+        'Muito prazer, eu sou o Dado! Sou um rapaz maduro, muito calmo, tranquilo e um companheiro incrivelmente leal. Se você procura um amigo sossegado, carinhoso e perfeito para fazer companhia nas tardes de descanso, eu sou o gatinho ideal!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Belinha - 21/02/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="RS"
+  data-cidade="PORTO ALEGRE"
+  data-loja="MAP Praia de Belas"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-02-21">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/belinha_card.webp"
+    data-foco=" center 35%"
+    loading = "lazy"
+    alt="Belinha">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Belinha
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Praia de Belas,<br>
+      PORTO ALEGRE, RS
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Belinha',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Praia de Belas, PORTO ALEGRE, RS',
+        '02/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/belinha_modal.webp',
+        'Olá, amigos! Eu sou a Belinha, uma gatinha super afetuosa, brincalhona e dona de uma delicadeza sem igual. Eu amo receber atenção e estou contando os dias para encontrar um lar definitivo cheio de amor e cafunés!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Dalí - 16/06/2023
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SC"
+  data-cidade="FLORIANOPOLIS"
+  data-loja="MAP Beira-Mar"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2023-06-16">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/dali_card.webp"
+    loading = "lazy"
+    alt="Dalí">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Dalí
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Beira-Mar,<br>
+      FLORIANÓPOLIS, SC
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Dalí',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Beira-Mar, FLORIANÓPOLIS, SC',
+        '06/2023',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/dali_modal.webp',
+        'Oi, turma! Eu sou o Dalí, um gatinho muito divertido, carinhoso e super sociável. Sou fascinado por explorar novos cantinhos e inventar brincadeiras pela casa. Estou prontinho para levar muita energia positiva e parceria para o seu lar!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             maya - 02/10/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SE"
+  data-cidade="ARACAJU"
+  data-loja="MAP Atalaia"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-10-02">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/maya_card.webp"
+    data-foco=" center 50%"
+    loading = "lazy"
+    alt="Maya">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Maya
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Atalaia,<br>
+      ARACAJU, SE
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Maya',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Atalaia, ARACAJU, SE',
+        '10/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/maya_modal.webp',
+        'Oi, pessoal! Eu sou a Maya, uma gatinha extremamente dócil, carinhosa e apaixonada por humanos. O meu passatempo favorito é ganhar um colinho quentinho e acompanhar tudo bem de perto. Que tal me dar a chance de ser sua sombra de amor?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Chapplin - 25/04/2022
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="BARUERI"
+  data-loja="MAP Tamboré"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2022-04-25">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/chapplin_card.webp"
+    data-foco=" center 40%"
+    loading = "lazy"
+    alt="Chapplin">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Chapplin
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Tamboré,<br>
+      BARUERI, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Chapplin',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Tamboré, BARUERI, SP',
+        '04/2022',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/chapplin_modal.webp',
+        'Muito prazer, eu sou o Chapplin! Sou um rapaz muito inteligente, companheiro e dono de um temperamento super afetuoso. Adoro interagir com as pessoas e estou prontinho para me tornar o parceiro perfeito da sua rotina!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Bolota - 26/01/2026
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="BAURU"
+  data-loja="MAP Bauru"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2026-01-26">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/bolota_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Bolota">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Bolota
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Bauru,<br>
+      BAURU, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Bolota',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Bauru, BAURU, SP',
+        '01/2026',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/bolota_modal.webp',
+        'Oie! Eu sou a Bolota, uma princesinha alegre, super animada e fascinada por brinquedos. Adoro inventar uma diversão, gastar energia e depois relaxar ganhando muito cafuné. Vamos encher a casa de alegria juntos?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Betina - 13/07/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SC"
+  data-cidade="JOINVILLE"
+  data-loja="MAP América"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-07-13">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/betina_card.webp"
+    data-foco=" center 25%"
+    loading = "lazy"
+    alt="Betina">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+     Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Betina
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP América,<br>
+      JOINVILLE, SC
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Betina',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP América, JOINVILLE, SC',
+        '07/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/betina_modal.webp',
+        'Olá, tios! Eu sou a Betina, uma gatinha meiga, muito tranquila e de uma doçura sem igual. Eu amo a calmaria e a companhia dos humanos, estando ansiosa para encontrar um lar aconchegante para espalhar meus ronrons!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Dante - 29/01/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SC"
+  data-cidade="BALNEARIO CAMBORIU"
+  data-loja="MAP Balneario Camboriu"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-01-29">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/dante_card.webp"
+    data-foco=" center 15%"
+    loading = "lazy"
+    alt="Dante">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Dante
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Balneario Camboriu,<br>
+      BALNEARIO CAMBORIU, SC
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Dante',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Balneario Camboriu, BALNEARIO CAMBORIU, SC',
+        '01/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/dante_modal.webp',
+        'Oi, turma! Eu sou o Dante, um gatinho jovem, muito esperto, brincalhão e incrivelmente amigável. Estou com as energias renovadas e totalmente pronto para alegrar uma nova família. Que tal me levar para casa?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Nevasca - 06/10/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="OSASCO"
+  data-loja="MAP Osasco"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-10-06">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/nevasca_card.webp"
+    loading = "lazy"
+    alt="Nevasca">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Nevasca
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Osasco,<br>
+      OSASCO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Nevasca',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Osasco, OSASCO, SP',
+        '10/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/nevasca_modal.webp',
+        'Olá, amigos! Eu sou a Nevasca, uma gatinha muito delicada, dócil e tranquila. O que eu mais amo no mundo é encontrar um cantinho bem macio e confortável para tirar minhas sonecas e receber muito cafuné na cabeça. Que tal me adotar?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Ranzinza - 23/09/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="PIRACICABA"
+  data-loja="MAP Piracicaba"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-09-23">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/ranzinza_card.webp"
+    loading = "lazy"
+    alt="Ranzinza">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Ranzinza
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Piracicaba,<br>
+      PIRACICABA, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Ranzinza',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Piracicaba, PIRACICABA, SP',
+        '09/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/ranzinza_modal.webp',
+        'Oie! Apesar do meu nome divertido, eu sou o Ranzinza e de ranzinza não tenho nada! Sou um garoto super animado, carinhoso e fascinado por interagir com as pessoas. Adoro uma boa brincadeira e estou prontinho para alegrar o seu lar!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Bia - 10/05/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SAO CARLOS"
+  data-loja="MAP São Carlos"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-05-10">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/bia_card.webp"
+    data-foco=" center 5%"
+    loading = "lazy"
+    alt="Bia">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Bia
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP São Carlos,<br>
+      SAO CARLOS, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Bia',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP São Carlos, SAO CARLOS, SP',
+        '05/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/bia_modal.webp',
+        'Oi, pessoal! Eu sou a Bia, uma princesinha doce, amorosa e incrivelmente carinhosa. Sou conhecida por ser uma gatinha encantadora e muito boazinha, e estou super ansiosa esperando por uma família especial para encher de ronrons!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Flokus - 27/10/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="TO"
+  data-cidade="PALMAS"
+  data-loja="MAP Plano Diretor Sul"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-10-27">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/flokus_card.webp"
+    data-foco=" center 35%"
+    loading = "lazy"
+    alt="Flokus">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Flokus
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Plano Diretor Sul,<br>
+      PALMAS, TO
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Flokus',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Plano Diretor Sul, PALMAS, TO',
+        '10/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/flokus_modal.webp',
+        'Muito prazer, eu sou o Flokus! Sou um rapazinho extremamente simpático, companheiro e muito brincalhão. Eu amo receber a atenção dos humanos e prometo ser o parceiro perfeito para todas as horas da sua rotina!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Pipoca - 04/02/2021
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="INDAIATUBA"
+  data-loja="MAP Indaiatuba"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2021-02-04">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/pipoca_card.webp"
+    data-foco=" center 1%"
+    loading = "lazy"
+    alt="Pipoca">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Pipoca
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Indaiatuba,<br>
+      INDAIATUBA, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Pipoca',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Indaiatuba, INDAIATUBA, SP',
+        '02/2021',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/pipoca_modal.webp',
+        'Olá, titios! Eu sou a Pipoca, uma gatinha madura, muito tranquila e de um companheirismo sem igual. Sou ideal para quem busca uma amiga calma, afetuosa e perfeita para fazer companhia nos momentos de descanso. Me adota?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Caio - 15/08/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="PI"
+  data-cidade="TERESINA"
+  data-loja="MAP Jóquei"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-08-15">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/caio_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Caio">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Caio
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Jóquei,<br>
+      TERESINA, PI
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Caio',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Jóquei, TERESINA, PI',
+        '08/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/caio_modal.webp',
+        'Oi, turma! Eu sou o Caio, um gatinho jovem, muito curioso e que adora uma boa aventura. Sou fascinado por descobrir coisas novas e inventar brincadeiras pela casa. Estou totalmente pronto para levar muita energia positiva para a sua vida!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Bianca - 31/01/2023
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="ES"
+  data-cidade="VILA VELHA"
+  data-loja="MAP Praia da Costa"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2023-01-31">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/bianca_card.webp"
+    data-foco=" center 30%"
+    loading = "lazy"
+    alt="Bianca">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Bianca
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Praia da Costa,<br>
+      VILA VELHA, ES
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Bianca',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Praia da Costa, VILA VELHA, ES',
+        '01/2023',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/bianca_modal.webp',
+        'Olá, tios! Eu sou a Bianca, uma gatinha muito meiga, tranquila e transbordando carinho. O que eu mais amo no mundo é receber a atenção dos humanos e ficar relaxando por perto. Estou prontinha para levar muita paz e amor para a sua rotina!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Dobby - 20/05/2026
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="OSASCO"
+  data-loja="MAP Osasco"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2026-05-20">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/dobby_card.webp"
+    data-foco=" center 20%"
+    loading = "lazy"
+    alt="Dobby">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Dobby
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Osasco,<br>
+      OSASCO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Dobby',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Osasco, OSASCO, SP',
+        '05/2026',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/dobby_modal.webp',
+        'Oie! Eu sou o Dobby, um garotinho extremamente amoroso, sociável e que adora uma boa companhia. Sou fascinado por ficar pertinho das pessoas, ganhando cafuné e acompanhando cada passo. Vamos ser melhores amigos?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Dalini - 12/03/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="PIRACICABA"
+  data-loja="MAP Piracicaba"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-03-12">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/dalini_card.webp"
+    data-foco=" center 40%"
+    loading = "lazy"
+    alt="Dalini">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Dalini
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Piracicaba,<br>
+      PIRACICABA, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Dalini',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Piracicaba, PIRACICABA, SP',
+        '03/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/dalini_modal.webp',
+        'Muito prazer, eu sou a Dalini! Sou uma princesinha doce, calma e incrivelmente afetuosa. Estou com o coração cheio de esperança e procurando um lar definitivo para compartilhar meus ronrons mais sinceros. Me adota?'
+      )">
+
+     Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Cacau - 09/06/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="PRESIDENTE PRUDENTE"
+  data-loja="MAP Presidente Prudente"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-06-09">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/cacau_card.webp"
+    data-foco=" center 50%"
+    loading = "lazy"
+    alt="Cacau">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Cacau
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Presidente Prudente,<br>
+      PRESIDENTE PRUDENTE, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Cacau',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Presidente Prudente, PRESIDENTE PRUDENTE, SP',
+        '06/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/cacau_modal.webp',
+        'Oi, pessoal! Eu sou a Cacau, uma gatinha jovem, delicada e super brincalhona. Adoro correr atrás de brinquedos e interagir com todo mundo ao meu redor. Estou super ansiosa esperando por uma família nota dez para me acolher!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Flow - 24/11/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="RIBEIRAO PRETO"
+  data-loja="MAP Carrefour Ribeirão Shopping"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-11-24">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/flow_card.webp"
+    data-foco=" center 20%"
+    loading = "lazy"
+    alt="Flow">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Flow
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Carrefour Ribeirão Shopping,<br>
+      RIBEIRÃO PRETO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Flow',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Carrefour Ribeirão Shopping, RIBEIRÃO PRETO, SP',
+        '11/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/flow_modal.webp',
+        'Olá, amigos! Eu sou o Flow, um gatinho muito divertido, carinhoso e o companheiro perfeito para todas as horas. Amo inventar uma brincadeira saudável e depois deitar do ladinho para descansar. Que tal me dar uma chance?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Frida - 14/02/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="RIO CLARO"
+  data-loja="MAP Rio Claro"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-02-14">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/frida_card.webp"
+    data-foco=" center 5%"
+    loading = "lazy"
+    alt="Frida">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Frida
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Rio Claro,<br>
+      RIO CLARO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Frida',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Rio Claro, RIO CLARO, SP',
+        '02/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/frida_modal.webp',
+        'Olá, pessoal! Eu sou a Frida, uma gatinha muito carinhosa, tranquila e dona de uma delicadeza sem igual. Eu amo ganhar atenção e a companhia dos humanos na rotina. Estou super prontinha para levar muito amor e paz para o seu lar!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Capuccino - 01/12/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SANTO ANDRE"
+  data-loja="MAP Giovanni Pirelli"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2025-12-01">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/capuccino_card.webp"
+    data-foco=" center 10%"
+    loading = "lazy"
+    alt="Capuccino">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Capuccino
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Giovanni Pirelli,<br>
+      SANTO ANDRÉ, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Capuccino',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Giovanni Pirelli, SANTO ANDRÉ, SP',
+        '12/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/capuccino_modal.webp',
+        'Oie! Eu sou o Capuccino, um filhotão muito alegre, brincalhão e transbordando carinho. Estou dando meus primeiros passos no mundo e procurando uma família especial para me dar o meu primeiríssimo lar definitivo. Vamos nos divertir juntos?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Cherry - 18/12/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SANTOS"
+  data-loja="MAP Santos Macuco"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-12-18">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/cherry_card.webp"
+    data-foco="center 55%"
+    loading = "lazy"
+    alt="Cherry">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Cherry
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Santos Macuco,<br>
+      SANTOS, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Cherry',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Santos Macuco, SANTOS, SP',
+        '12/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/cherry_modal.webp',
+        'Muito prazer, eu sou a Cherry! Sou uma princesinha extremamente doce, calma e afetuosa. Sou a companhia perfeita para quem busca uma amiga tranquila para ficar por perto espalhando doçura e amor por toda a casa. Me adota?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Heitor - 07/07/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SAO BERNARDO DO CAMPO"
+  data-loja="MAP Pereira Barreto"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2024-07-07">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/heitor_card.webp"
+    loading = "lazy"
+    alt="Heitor">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Heitor
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Pereira Barreto,<br>
+      SÃO BERNARDO DO CAMPO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Heitor',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Pereira Barreto, SÃO BERNARDO DO CAMPO, SP',
+        '07/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/heitor_modal.webp',
+        'Oi, turma! Eu sou o Heitor, um gatinho jovem, super inteligente, brincalhão e muito amoroso. Eu sou fascinado por interagir com as pessoas, receber atenção e ter companhia para o dia todo. Que tal me dar uma chance de te fazer feliz?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Cora - 26/03/2025
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SAO CARLOS"
+  data-loja="MAP São Carlos"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2025-03-26">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/cora_card.webp"
+    data-foco=" center 40%"
+    loading = "lazy"
+    alt="Cora">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Cora
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP São Carlos,<br>
+      SÃO CARLOS, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Cora',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP São Carlos, SÃO CARLOS, SP',
+        '03/2025',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/cora_modal.webp',
+        'Olá, amigos! Eu sou a Cora, uma gatinha muito doce, brincalhona e cheia de afeto para compartilhar. Adoro ficar coladinha com as pessoas acompanhando tudo e participando da rotina. Estou ansiosa esperando por uma família para amar!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Fritz - 05/02/2026
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SAO JOSE DO RIO PRETO"
+  data-loja="MAP São José do Rio Preto"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2026-02-05">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/fritz_card.webp"
+    data-foco=" center 25%"
+    loading = "lazy"
+    alt="Fritz">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Fritz
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP São José do Rio Preto,<br>
+      SÃO JOSÉ DO RIO PRETO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Fritz',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP São José do Rio Preto, SÃO JOSÉ DO RIO PRETO, SP',
+        '02/2026',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/fritz_modal.webp',
+        'Oi, pessoal! Eu sou o Fritz, um gatinho super carinhoso, inteligente e um companheiro leal para todas as horas do dia. Estou com o coração cheio de esperança, apenas aguardando um lar definitivo e seguro para chamar de meu!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Brenda - 16/09/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SAO PAULO"
+  data-loja="MAP Augusta"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2024-09-16">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/brenda_card.webp"
+    data-foco=" center 5%"
+    loading = "lazy"
+    alt="Brenda">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Brenda
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Augusta,<br>
+      SÃO PAULO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Brenda',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Augusta, SÃO PAULO, SP',
+        '09/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/brenda_modal.webp',
+        'Olá, tios! Eu sou a Brenda, uma gatinha super elegante, dócil e cheia de charme. Eu amo receber carinho e me sinto muito melhor em ambientes tranquilos e sossegados, onde posso relaxar e curtir uma calmaria. Vamos ser felizes juntas?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Chiquinho - 30/10/2022
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SAO PAULO"
+  data-loja="MAP Aricanduva"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2022-10-30">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/chiquinho_card.webp"
+    data-foco=" center 5%"
+    loading = "lazy"
+    alt="Chiquinho">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Chiquinho
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Aricanduva,<br>
+      SÃO PAULO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Chiquinho',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Aricanduva, SÃO PAULO, SP',
+        '10/2022',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/chiquinho_modal.webp',
+        'Muito prazer, eu sou o Chiquinho! Sou um rapazinho calmo, extremamente amoroso e o parceiro de vida ideal. Adoro estar por perto acompanhando a rotina e distribuindo afeto. Estou prontinho para levar muita harmonia para o seu lar!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Cherrie - 22/06/2020
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="SAO PAULO"
+  data-loja="MAP Anália Franco"
+  data-porte="Pequeno"
+  data-sexo="Fêmea"
+  data-especie="Gato"
+  data-nascimento="2020-06-22">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/femeas/cherrie_card.webp"
+    data-foco=" center 40%"
+    loading = "lazy"
+    alt="Cherrie">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Cherrie
+      </span>
+      <span class="card-sex">
+        ♀
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Anália Franco,<br>
+      SÃO PAULO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Cherrie',
+        '♀',
+        'Meu Amigo de Pata',
+        'MAP Anália Franco, SÃO PAULO, SP',
+        '06/2020',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/femeas/cherrie_modal.webp',
+        'Oie! Eu sou a Cherrie, uma gatinha muito meiga, brincalhona e transbordando carinho. Adoro uma boa brincadeira com bolinhas e arranhadores, mas o que eu mais quero é encontrar um lar cheio de amor para compartilhar minha doçura!'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+<!-- =========================
+             Cometa - 13/06/2024
+        ========================= -->
+
+<div
+  class="card"
+  data-estado="SP"
+  data-cidade="RIBEIRAO PRETO"
+  data-loja="MAP Presidente Vargas"
+  data-porte="Pequeno"
+  data-sexo="Macho"
+  data-especie="Gato"
+  data-nascimento="2024-06-13">
+
+  <img
+    class="card-img"
+    src="imagens/pets/gatos/machos/cometa_card.webp"
+    data-foco=" center 5%"
+    loading = "lazy"
+    alt="Cometa">
+
+  <div class="card-body">
+
+    <span class="card-ong">
+      Meu Amigo de Pata
+    </span>
+
+    <div class="card-title-row">
+      <span class="card-title">
+        Cometa
+      </span>
+      <span class="card-sex">
+        ♂
+      </span>
+    </div>
+
+    <p class="card-location">
+      MAP Presidente Vargas,<br>
+      RIBEIRAO PRETO, SP
+    </p>
+
+    <p class="card-nascimento">
+      <strong>Idade:</strong>
+      <span class="idade-animal"></span>
+    </p>
+
+    <button
+      class="btn-orange"
+      onclick="openModal(
+        'Cometa',
+        '♂',
+        'Meu Amigo de Pata',
+        'MAP Presidente Vargas, RIBEIRAO PRETO, SP',
+        '06/2024',
+        'GATO SRD',
+        'Pequeno',
+        'imagens/pets/gatos/machos/cometa_modal.webp',
+        'Oi, turma! Eu sou o Cometa, um gatinho super curioso, brincalhão e incrivelmente sociável. Adoro fazer novas amizades, explorar a casa e ter companhia para o dia todo. Que tal me dar uma chance de orbitar no seu coração?'
+      )">
+
+      Mais informações
+
+    </button>
+
+  </div>
+</div>
+
+
+
+      </div>
+
+    </main>
+
+  </div>
+  
+  
+  
+  
+
+
+ <!-- =========================
+       MODAL
+  ========================= -->
+
+  <div
+    class="modal-overlay"
+    id="petModal"
+    onclick="closeModalOnOverlay(event)">
+
+
+    <div class="modal-card">
+
+
+      <button
+        class="modal-close"
+        onclick="closeModal()">
+
+        ✕
+
+      </button>
+
+
+      <img
+        class="modal-img"
+        id="modalImg"
+        src=""
+        alt="Pet">
+
+
+      <div class="modal-body">
+
+
+        <div
+          class="modal-ong"
+          id="modalOng">
+
+          ONG
+
+        </div>
+
+
+        <div class="modal-title-row">
+
+          <span
+            class="modal-title"
+            id="modalTitle">
+
+            Nome
+
+          </span>
+
+        
+
+          <span
+            class="modal-gender"
+            id="modalGender">
+
+            ♂
+
+          </span>
+          
+          
+
+
+        </div>
+
+
+        <p class="modal-info">
+
+          <strong>
+            Local:
+          </strong>
+
+          <span id="modalLocation"></span>
+
+        </p>
+        
+        <p class="modal-infon">
+
+          <strong>
+            Nascimento:
+          </strong>
+
+          <span id="modalLocation2"></span>
+
+        </p>
+        
+        
+        <p class="modal-infor">
+
+          <strong>
+            Raça:
+          </strong>
+
+          <span id="modalRaca"></span>
+
+        </p>
+        
+        
+        <p class="modal-infop">
+
+          <strong>
+            Porte:
+          </strong>
+
+          <span id="modalPorte"></span>
+
+        </p>
+
+
+        <p
+          class="modal-info"
+          id="modalDesc">
+
+        </p>
+        
+
+
+
+        <button
+          class="btn-orange"
+
+          style="
+            width: 100%;
+            font-size: 1rem;
+            padding: 0.8rem;
+          "
+
+          onclick="alert('Iniciando processo de adoção!')">
+
+          Quero Adotar
+
+        </button>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="js/script.js"></script>
+ <!-- MODAL DO QUERO ADOTAR -->
+
+<<div id="modalSugestoes" class="modal-overlay" onclick="closeSugestoesOnOverlay(event)" style="display: none;">
+
+    <div class="modal-card" style="max-width: 650px; padding: 2rem; display: block; flex-direction: unset;">
+
+        <button class="modal-close" onclick="fecharSugestoes()">✕</button>
+
+        <h2 style="text-align: center; margin-bottom: 0.5rem; color: #6d4c41;">🐾 Encontre seu novo amigo!</h2>
+
+        <p class="texto-sugestoes" style="text-align: center; margin-bottom: 1.5rem; color: #555;">
+            Separamos alguns pets que podem conquistar seu coração ❤️
+        </p>
+
+        <div id="petsSugestoes" class="pets-sugestoes">
+            <!-- O javascript vai colocar 3 pets aqui -->
+        </div>
+
+    </div>
+
+</div>
+
+</html>

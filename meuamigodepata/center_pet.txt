@@ -1,0 +1,81 @@
+data-foco: 
+mel: center 10% 
+minni: ok
+milly: center 30%
+bento: center 20%
+meg: center 40%
+luke: center 10%
+bela: center 25%
+chico: ok
+otto: center 60%
+maylou: center 20%
+nala: center 20%
+zeus: center 20%
+toby: center 60%
+floquinho: center 60%
+pandora: center 40%
+nina: center 30%
+apolo: center 30%
+butley: center 10%
+billy: center 10%
+theo: center 50%
+simba: center 25%
+max: center 40%
+faísca: center 5%
+babi: center 70%
+micha: center 10%
+pitoco: center 5%
+pingo: center 40%
+cacau: center 20%
+max: center 33%
+
+gatos 
+
+mia: center 10%
+alvinho: ok
+mimi: center 20%
+Alfredo: center 10%
+sushi: center 30%
+pandora: center 30%
+apollo: ok
+atena: center 25%
+apolo: center 2%
+zoe: center 50%
+Arquimedes: center 1%
+chloe: center 10%
+Arthur: ok
+banguela:ok
+fumaça: center 5%
+benn: center 10%
+luna: center 15%
+chico: center 5%
+aurora:  center 10%
+dado: ok
+belinha: center 35%
+dali: ok
+maya: center 50%
+chapplin: center 40%
+bolota: center 10%
+betina: center 25%
+dante:center 15%
+nevasca: ok
+ranzinza:ok
+bia: center 5%
+flokus:center 35%
+pipoca: center 1%
+caio: center 10%
+bianca: center 30%
+dobby: center 20%
+dalini: center 40%
+cacau: center 50%
+flow: center 20%
+frida: center 5%
+capuccino: center 10%
+cherry: center 55%
+heitor: ok
+cora: center 40%
+fritz: center 25%
+brenda: center 5%
+Chiquinho: center 5%
+cherrie: center 40%
+cometa: center 5%
