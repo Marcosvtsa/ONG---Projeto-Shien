@@ -685,12 +685,14 @@ PALMAS: [
         input.dataset.selecionada = "false";
 
         // Esconde as lojas
-        document.getElementById("listaLojas").innerHTML = `
-          <p class="lojas-placeholder">
-            Selecione uma cidade primeiro
-            para visualizar as Lojas.
-          </p>
-        `;
+        const listaLojas = document.getElementById("container-lojas");
+    if (listaLojas) {
+      listaLojas.innerHTML = `
+        <p class="lojas-placeholder">
+          Selecione uma cidade primeiro para visualizar as Lojas.
+        </p>
+      `;
+    }
 
         aplicarFiltros();
         return;
@@ -1693,35 +1695,27 @@ function alternarMosaicoAutomatico() {
 ======================================================= */
 document.addEventListener("DOMContentLoaded", function() {
   
-  // Seleciona todos os inputs do tipo radio de Estado, Cidade e Loja
-  const radiosFiltro = document.querySelectorAll('input[name="uf"], input[name="cidade"], input[name="loja"]');
+  // Seleciona APENAS o input de Estado (uf), já que Cidade e Loja usam funções inline nativas
+  const radiosFiltro = document.querySelectorAll('input[name="uf"]');
 
   radiosFiltro.forEach(radio => {
-    // Escuta o clique diretamente no círculo
     radio.addEventListener("click", function() {
-      
-      // Se o círculo clicado JÁ ESTAVA marcado antes do clique
       if (this.previousState === true) {
-        this.checked = false;        // Desmarca o círculo na tela
-        this.previousState = false;  // Atualiza o estado para desmarcado
+        this.checked = false;
+        this.previousState = false;
       } else {
-        // Se era um círculo novo, marca ele e desmarca os irmãos do mesmo grupo
         const grupo = document.querySelectorAll(`input[name="${this.name}"]`);
         grupo.forEach(r => r.previousState = false);
-        
-        this.previousState = true;   // Guarda que este agora está marcado
+        this.previousState = true;
       }
 
-      // 🌟 Dispara a sua função para atualizar a tela na mesma hora!
       if (typeof aplicarFiltros === "function") {
         aplicarFiltros();
       }
     });
 
-    // Garante que o estado inicial comece correto caso a página atualize
     if (radio.checked) {
       radio.previousState = true;
     }
   });
 });
-
