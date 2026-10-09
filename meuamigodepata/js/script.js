@@ -942,17 +942,16 @@ PALMAS: [
 const emptyState = document.getElementById("emptyState");
 const petGrid = document.querySelector(".pet-grid");
 
-if (petsVisiveis === 0) {
-  emptyState.style.display = "flex";
-  petGrid.style.display = "none";
-} else {
-  emptyState.style.display = "none";
-  petGrid.style.display = "grid";
-}
-     
-    
+if (emptyState) {
+    if (petsVisiveis === 0) {
+      emptyState.style.display = "block"; // Mostra o bloco fixo de texto do HTML
+      if (petGrid) petGrid.style.display = "none"; // Esconde a grade de pets se estiver vazia
+    } else {
+      emptyState.style.display = "none"; // Oculta o aviso de nenhum pet encontrado
+      if (petGrid) petGrid.style.display = "grid"; // Mostra a grade com os pets de volta
     }
-    
+  }
+}
     /*=================
     calcual idade
     =================*/
@@ -1129,109 +1128,85 @@ function abrirSugestoes() {
 ==============*/
 
 function abrirSugestoes() {
-
     const modal = document.getElementById("modalSugestoes");
     const container = document.getElementById("petsSugestoes");
 
-    // Pega todos os cards dos pets
+    // Pega todos os cards dos pets originais da página
     const pets = Array.from(document.querySelectorAll(".card"));
 
-    // Limpa as sugestões anteriores
+    // Limpa as sugestões anteriores e limpa o campo de busca para uma nova pesquisa
     container.innerHTML = "";
+    const inputBusca = document.getElementById('searchInput');
+    const mensagemDeErro = document.getElementById('noResultsMessage');
+    if (inputBusca) inputBusca.value = ""; 
+    if (mensagemDeErro) mensagemDeErro.style.display = "none";
 
-    // Se não houver pets
+    // Se não houver nenhum pet na página
     if (pets.length === 0) {
-
         container.innerHTML = `
             <p style="text-align: center; grid-column: 1 / -1;">
                 Nenhum pet disponível no momento.
             </p>
         `;
-
         modal.style.display = "flex";
         return;
     }
 
-    // Embaralha os pets
+    // 1. Embaralha os pets originais
     const petsEmbaralhados = [...pets].sort(() => Math.random() - 0.5);
 
-    // Escolhe no máximo 3
+    // 2. Escolhe no máximo 3 para exibir como sugestão
     const petsEscolhidos = petsEmbaralhados.slice(0, 3);
 
-
+    // 3. Monta cada um dos 3 cards novos dentro do modal
     petsEscolhidos.forEach(pet => {
-
-        // Pega as informações do card
+        // Pega as informações de texto e imagem do card original
         const imagem = pet.querySelector(".card-img")?.src || "";
-
         const nome = pet.querySelector(".card-title")?.textContent.trim() || "Pet";
-
         const sexo = pet.querySelector(".card-title-row span:nth-child(2)")?.textContent.trim() || "";
-
         const ong = pet.querySelector(".card-ong")?.textContent.trim() || "";
-
         const localizacao = pet.querySelector(".card-location")?.textContent.trim() || "";
-
         const idade = pet.querySelector(".idade-animal")?.textContent.trim() || "";
 
-
-        // Cria o card da sugestão
+        // Cria o elemento HTML do novo card de sugestão
         const sugestao = document.createElement("div");
-
         sugestao.className = "pet-sugestao";
 
+        // 🌟 PASSO CRUCIAL: Transfere os dados invisíveis dos filtros para este novo card
+        sugestao.setAttribute("data-estado", pet.dataset.estado || "");
+        sugestao.setAttribute("data-cidade", pet.dataset.cidade || "");
+        sugestao.setAttribute("data-loja", pet.dataset.loja || "");
+        sugestao.setAttribute("data-porte", pet.dataset.porte || "");
+        sugestao.setAttribute("data-sexo", pet.dataset.sexo || "");
+        sugestao.setAttribute("data-especie", pet.dataset.especie || "");
+        sugestao.setAttribute("data-nascimento", pet.dataset.nascimento || "");
 
+        // Injeta a estrutura visual do card
         sugestao.innerHTML = `
-
-            <img
-                src="${imagem}"
-                alt="${nome}"
-            >
-
+            <img src="${imagem}" alt="${nome}">
             <div class="info-sugestao">
-
                 <h3>${nome}</h3>
-
                 <p>${sexo}</p>
-
                 <p>${ong}</p>
-
                 <p>${localizacao}</p>
-
-                <p>
-                    <strong>Idade:</strong>
-                    ${idade}
-                </p>
-
+                <p><strong>Idade:</strong> ${idade}</p>
             </div>
-
         `;
 
-
-        // Quando clicar no pet sugerido
+        // Configura a ação de clique para abrir o modal de detalhes do pet original
         sugestao.onclick = function() {
-
-            // Primeiro fecha o modal de sugestões
             fecharSugestoes();
-
-            // Procura o botão original daquele pet
             const botao = pet.querySelector(".btn-orange");
-
-            // Abre o modal original do pet
             if (botao) {
                 botao.click();
             }
-
         };
 
-
-        // Coloca a sugestão dentro do modal
+        // Adiciona o card finalizado dentro do container de sugestões
         container.appendChild(sugestao);
-
     });
 
-
-    // Abre o modal de sugestões
+    // Abre o modal de sugestões na tela mudando o display para flex
     modal.style.display = "flex";
 }
 
@@ -1711,3 +1686,42 @@ function alternarMosaicoAutomatico() {
 // Mantém o intervalo de 5 segundos
  setInterval(alternarMosaicoAutomatico, 5000);
  window.addEventListener("DOMContentLoaded", alternarMosaicoAutomatico);
+
+/* =======================================================
+   MONITORADOR AUTOMÁTICO DE SELEÇÃO DOS FILTROS
+   (Faz os pets reaparecerem assim que você desmarca algo)
+======================================================= */
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // Seleciona todos os inputs do tipo radio de Estado, Cidade e Loja
+  const radiosFiltro = document.querySelectorAll('input[name="uf"], input[name="cidade"], input[name="loja"]');
+
+  radiosFiltro.forEach(radio => {
+    // Escuta o clique diretamente no círculo
+    radio.addEventListener("click", function() {
+      
+      // Se o círculo clicado JÁ ESTAVA marcado antes do clique
+      if (this.previousState === true) {
+        this.checked = false;        // Desmarca o círculo na tela
+        this.previousState = false;  // Atualiza o estado para desmarcado
+      } else {
+        // Se era um círculo novo, marca ele e desmarca os irmãos do mesmo grupo
+        const grupo = document.querySelectorAll(`input[name="${this.name}"]`);
+        grupo.forEach(r => r.previousState = false);
+        
+        this.previousState = true;   // Guarda que este agora está marcado
+      }
+
+      // 🌟 Dispara a sua função para atualizar a tela na mesma hora!
+      if (typeof aplicarFiltros === "function") {
+        aplicarFiltros();
+      }
+    });
+
+    // Garante que o estado inicial comece correto caso a página atualize
+    if (radio.checked) {
+      radio.previousState = true;
+    }
+  });
+});
+
