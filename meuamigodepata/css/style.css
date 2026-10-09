@@ -672,38 +672,39 @@ body {
     }
 }
 
-}    /* Animação do Cachorrinho */
-.dog-box {
+   /* Animação do Cachorrinho */
+.erro-dog-box {
   width: 100px;
   height: 90px;
-  position: relative;
-  margin-bottom: 1rem;
+  position: relative !important; /* Fixa os elementos absolutos localmente */
+  margin: 1.5rem auto 0 auto;    /* Centraliza e empurra para baixo da frase */
+  display: block;
 }
 
-.dog-head {
+.erro-dog-head {
   width: 80px;
   height: 70px;
   background: #e59866;
   border-radius: 40px 40px 30px 30px;
-  position: absolute;
-  top: 15px;
-  left: 10px;
-  animation: acenar 1.5s infinite ease-in-out;
+  position: absolute !important;
+  top: 15px !important;
+  left: 10px !important;
+  animation: acenarErro 1.5s infinite ease-in-out;
+  z-index: 2;
 }
 
-.ear-left, .ear-right {
+.erro-ear-left, .erro-ear-right {
   width: 25px;
   height: 45px;
   background: #ba6829;
   border-radius: 20px;
-  position: absolute;
+  position: absolute !important;
   top: 10px;
 }
+.erro-ear-left { left: 5px; transform: rotate(15deg); }
+.erro-ear-right { right: 5px; transform: rotate(-15deg); }
 
-.ear-left { left: 5px; transform: rotate(15deg); }
-.ear-right { right: 5px; transform: rotate(-15deg); }
-
-.eye {
+.erro-eye {
   width: 10px;
   height: 10px;
   background: #333;
@@ -711,11 +712,10 @@ body {
   position: absolute;
   top: 25px;
 }
+.erro-eye-left { left: 22px; }
+.erro-eye-right { right: 22px; }
 
-.eye-left { left: 22px; }
-.eye-right { right: 22px; }
-
-.snout {
+.erro-snout {
   width: 26px;
   height: 18px;
   background: #fff;
@@ -725,7 +725,7 @@ body {
   left: 27px;
 }
 
-.nose {
+.erro-nose {
   width: 12px;
   height: 8px;
   background: #333;
@@ -733,7 +733,7 @@ body {
   margin: 3px auto 0;
 }
 
-@keyframes acenar {
+@keyframes acenarErro {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(-8deg); }
   75% { transform: rotate(8deg); }
@@ -1278,4 +1278,50 @@ body {
     /* Desloca metade do tamanho da lista duplicada para criar o looping perfeito */
     transform: translateX(calc(-50% - 10px)); 
   }
+}
+
+/*======
+  chat-sugestão
+========*/
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 25px auto;
+  max-width: 550px;
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #e2dfd8;
+  border-radius: 25px; 
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #c5a074; 
+}
+
+#searchButton {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #d2a977; 
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+#searchButton:hover {
+  background-color: #bfa065;
 }
