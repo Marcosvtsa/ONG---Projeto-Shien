@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontre seu companheiro perfeito</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Atalhos de Navega -->
+<nav class="barra-navegacao">
+  <div class="navegacao-container">
+
+    <a href="adote.html" class="navegacao-link" data-pagina="adocao">
+      Adoção
+    </a>
+
+    <a href="#" class="navegacao-link" data-pagina="doacao">
+      Doação
+    </a>
+
+    <a href="#" class="navegacao-link" data-pagina="resgate">
+      Resgate
+    </a>
+
+    <a href="#" class="navegacao-link" data-pagina="quem-somos">
+      Quem Somos
+    </a>
+
+  </div>
+</nav>
+
+  <!-- CONTEÚDO PRINCIPAL / HERO -->
+  <main class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">Encontre seu<br>companheiro perfeito</h1>
+      <p class="hero-subtitle">Adote um amigo e dê a ele um lar cheio de amor para sempre.</p>
+      
+      <div class="hero-buttons">
+        <a href="adote.html" class="btn-hero btn-sugestao">Sugestão</a>
+        <a href="#" class="btn-hero btn-parceiro">Seja Parceiro</a>
+      </div>
+    </div>
+
+    <!-- MOSAICO ESTÁTICO DE EXEMPLO -->
+    <div class="hero-image-area">
+      <div class="mosaico-imagens">
+        <div class="mosaico-topo">
+      <img src="imagens/pets/gatos/machos/arthur_card.webp" alt="Pet Destaque 1" class="pet-img-fixa square pos-1">
+      <img src="imagens/pets/gatos/machos/banguela_card.webp" alt="Pet Destaque 2" class="pet-img-fixa square pos-2">
+    </div>
+    <!-- Imagem retangular abaixo das duas -->
+    <div class="caixa-retangular">
+      <img src="imagens/pets/cachorros/machos/bento_card.webp" alt="Banner Pet Destaque"style="object-position: center 30%;"    class="pet-img-fixa rectangular pos-3">
+    </div>
+  </div>
+
+    </div>
+  </main>
+<!-- SEÇÃO DO CARROSSEL CONTÍNUO -->
+<section class="carrossel-pets-container">
+
+  <!-- SETA ESQUERDA -->
+  <button class="carrossel-seta seta-esquerda" id="setaAnterior" aria-label="Pet anterior">
+    ❮
+  </button>
+
+  <!-- O JAVASCRIPT VAI BROTAR OS 200 CARDS SOZINHO AQUI DENTRO (DEIXEM VAZIO!) -->
+  <div class="carrossel-slider" id="carrosselAutogerado"></div>
+
+  <!-- SETA DIREITA -->
+  <button class="carrossel-seta seta-direita" id="setaProximo" aria-label="Próximo pet">
+    ❯
+  </button>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-coluna footer-sobre">
+            <h2>MEU AMIGO DE PATA 🐾</h2>
+            <p>
+                Encontre um novo melhor amigo!
+                Acreditamos que todo pet merece um lar cheio de amor.
+            </p>
+        </div>
+
+        <div class="footer-coluna">
+            <h3>Navegação</h3>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="adote.html">Pets para adoção</a></li>
+                <li><a href="#sobre">Sobre nós</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-coluna">
+            <h3>Entre em contato</h3>
+            <p>Tem dúvidas ou quer adotar?</p>
+            <a href="mailto:contato@petadote.com">
+                contato@petadote.com
+            </a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 MEU AMIGO DE PATA. Todos os direitos reservados.</p>
+        <p>Feito com ❤️ para quem ama os animais.</p>
+    </div>
+</footer>
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>
