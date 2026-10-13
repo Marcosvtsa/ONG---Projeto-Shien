@@ -931,6 +931,8 @@ body {
     object-fit: cover;       /* Preenche o retângulo sem distorcer o animal */
 }
 
+
+
 /*==============
 tela inicial
 ==============*/
@@ -1050,6 +1052,7 @@ body {
    VERSÃO MINI: CARROSSEL COMPACTO E CONTENIDO
    ========================================================================== */
 
+
 body {
   overflow-x: hidden !important;
 }
@@ -1065,17 +1068,86 @@ body {
 }
 
 /* Faixa interna horizontal */
+/* CARROSSEL */
+.carrossel-pets-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+/* Faixa de cards controlada pelo JavaScript */
 .carrossel-slider {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
-  gap: 15px !important; /* Espaço menor entre os mini-cards */
+  gap: 15px !important;
   width: max-content !important;
-  animation: rolarEsquerdaContinuo 25s linear infinite !important;
+  will-change: transform !important;
+  transform: translateX(0);
 }
 
-.carrossel-slider:hover {
-  animation-play-state: paused !important;
+
+/*ocultar a setas quando o mouse não estiver sobre o carrossel*/
+.carrossel-seta {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease !important;
+}
+
+.carrossel-pets-container:hover .carrossel-seta {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Cards */
+.carrossel-item {
+  flex: 0 0 180px;
+  width: 180px;
+  min-width: 180px;
+  max-width: 180px;
+  box-sizing: border-box;
+}
+
+/* Setas */
+.carrossel-seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--cor-marrom-texto);
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 3px 10px rgba(62, 39, 35, 0.20);
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.carrossel-seta:hover {
+  background-color: var(--cor-laranja-principal);
+  color: #fff;
+}
+
+.carrossel-seta:active {
+  opacity: 0.8;
+}
+
+.seta-esquerda {
+  left: 15px;
+}
+
+.seta-direita {
+  right: 15px;
 }
 
 /* CARD INDIVIDUAL EM TAMANHO PEQUENO (MINI) */
@@ -1159,169 +1231,311 @@ body {
     transform: translateX(calc(-50% - 7.5px)); /* Ajustado para a metade do gap menor */
   }
 }
+
+
 /* ==========================================================================
-   NOVAS CONFIGURAÇÕES: LAYOUT SEM FILTROS E CARROSSEL INFINITO DE PETS
+   SETAS DO CARROSSEL
    ========================================================================== */
 
-/* Remove a barra de rolagem horizontal feia e deixa o carrossel limpo */
-body {
-  overflow-x: hidden; 
-}
-
-/* CONTAINER PRINCIPAL DO TOPO (HERO) ADAPTADO */
-.hero-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 80px 8% 50px;
-  gap: 50px;
-}
-
-.hero-content {
-  flex: 1;
-}
-
-.hero-title {
-  font-size: 48px;
-  line-height: 1.15;
-  color: var(--cor-marrom-texto);
-  margin-bottom: 15px;
-  font-weight: 800;
-}
-
-.hero-subtitle {
-  font-size: 18px;
-  color: var(--cor-marrom-suave);
-  margin-bottom: 30px;
-  max-width: 450px;
-}
-
-/* ESTRUTURA DO CARROSSEL DE PETS (IGUAL À SUA SPLASH SCREEN ANTIGA) */
 .carrossel-pets-container {
-  width: 100vw;
-  overflow: hidden;
-  background-color: transparent;
-  padding: 30px 0;
   position: relative;
 }
 
-/* Faixa única que desliza continuamente da direita para a esquerda */
-.carrossel-slider {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: deslizarEsquerdaContínuo 25s linear infinite;
-}
-
-/* Pausa o movimento dos cachorrinhos se o usuário colocar o mouse em cima */
-.carrossel-slider:hover {
-  animation-play-state: paused;
-}
-
-/* CARD DE PET INDIVIDUAL ADAPTADO PARA A LINHA DO CARROSSEL */
-.card-pet {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 240px; 
-  flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(62, 39, 35, 0.05);
-  border: 1px solid rgba(62, 39, 35, 0.06);
-}
-
-.card-pet .card-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.card-pet .card-body {
-  padding: 1rem;
-}
-
-.card-pet .card-ong {
-  font-size: 0.75rem;
-  color: #f26522;
+/* Estilo das duas setas */
+.carrossel-seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  width: 42px;
+  height: 42px;
+  
+  border: none;
+  border-radius: 50%;
+  
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--cor-marrom-texto);
+  
+  font-size: 24px;
   font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 0.3rem;
-  display: block;
-}
-
-.card-pet .card-title-row {
+  
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  z-index: 20;
+  
+  box-shadow: 0 3px 10px rgba(62, 39, 35, 0.20);
+  
+  /* CORREÇÃO: Alinhado com o controle de opacidade do mouse sem travar o motor */
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
-.card-pet .card-title {
-  font-weight: 800;                      
-  font-size: 1.4rem;                     
-  color: var(--cor-marrom-texto); 
-  letter-spacing: -0.5px;
+/* Efeito ao passar o mouse */
+.carrossel-seta:hover {
+  background-color: var(--cor-laranja-principal);
+  color: #FFFFFF;
+  transform: translateY(-50%) scale(1.08);
 }
 
-.card-pet .card-sex {
-  font-weight: bold;
-  font-size: 1.4rem;
-  color: var(--cor-marrom-suave);
+/* Seta da esquerda */
+.seta-esquerda {
+  left: 15px;
 }
 
-/* ANIMAÇÃO DE DESLOCAMENTO INFINITO */
-@keyframes deslizarEsquerdaContínuo {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    /* Desloca metade do tamanho da lista duplicada para criar o looping perfeito */
-    transform: translateX(calc(-50% - 10px)); 
-  }
+/* Seta da direita */
+.seta-direita {
+  right: 15px;
 }
 
-/*======
-  chat-sugestão
-========*/
-.search-container {
+/* Efeito ao clicar */
+.carrossel-seta:active {
+  transform: translateY(-50%) scale(0.95);
+}
+/* =========================================
+   ATALHOS DE NAVEGAÇÃO
+   ========================================= */
+
+.atalhos-navegacao {
+  width: 100%;
+  padding: 25px 20px;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.atalhos-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.atalho-btn {
+  width: 210px;
+  min-height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 12px;
-  margin: 25px auto;
-  max-width: 550px;
-  padding: 0 20px;
-  font-family: sans-serif;
+
+  padding: 15px 20px;
+  box-sizing: border-box;
+
+  background-color: #FFFFFF;
+  color: var(--cor-marrom-texto);
+
+  border: 2px solid var(--cor-laranja-principal);
+  border-radius: 14px;
+
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+
+  box-shadow: 0 4px 12px rgba(62, 39, 35, 0.12);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-#searchInput {
+.atalho-icone {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.atalho-btn:hover {
+  background-color: var(--cor-laranja-principal);
+  color: #FFFFFF;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 7px 16px rgba(62, 39, 35, 0.20);
+}
+
+.atalho-btn:active {
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   BARRA SUPERIOR DE NAVEGAÇÃO À DIREITA
+   ========================================= */
+
+.barra-navegacao {
   width: 100%;
-  padding: 12px 20px;
+  background-color: var(--cor-laranja-principal);
+  padding: 14px 5%;
+  box-sizing: border-box;
+}
+
+.navegacao-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* Alinha os links à direita */
+  align-items: center;
+  gap: 35px;
+}
+
+.navegacao-link {
+  color: #FFFFFF;
+  text-decoration: none;
   font-size: 16px;
-  border: 2px solid #e2dfd8;
-  border-radius: 25px; 
-  outline: none;
-  background-color: #ffffff;
-  transition: border-color 0.3s ease;
+  font-weight: 600;
+  padding: 5px 0;
+  transition: opacity 0.2s ease;
 }
 
-#searchInput:focus {
-  border-color: #c5a074; 
+.navegacao-link:hover {
+  opacity: 0.75;
 }
 
-#searchButton {
-  padding: 12px 25px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #d2a977; 
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  white-space: nowrap;
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .barra-navegacao {
+    padding: 12px 15px;
+  }
+
+  .navegacao-container {
+    justify-content: flex-end;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .navegacao-link {
+    font-size: 14px;
+  }
 }
 
-#searchButton:hover {
-  background-color: #bfa065;
+/* FOOTER */
+.footer {
+    background-color: var(--cor-laranja-principal);
+    color: #ffffff;
+    padding: 45px 8% 20px;
+    margin-top: 50px;
 }
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-coluna {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-coluna h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.footer-coluna h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #f1c40f;
+}
+
+.footer-coluna p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #ecf0f1;
+}
+
+.footer-coluna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-coluna ul li {
+    margin-bottom: 10px;
+}
+
+.footer-coluna a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-coluna a:hover {
+    color: #f1c40f;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 35px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: #bdc3c7;
+    margin: 8px 0;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+.footer {
+padding: 35px 6% 20px;
+}
+.footer-container {
+flex-direction: column;
+gap: 25px;
+}
+.footer-coluna {
+width: 100%;
+}
+}
+/* =========================================
+CARROSSEL DE PETS - CONTROLE PELO JAVASCRIPT
+========================================= */
+.carrossel-pets-container {
+position: relative;
+width: 100%;
+max-width: 100%;
+overflow: hidden;
+box-sizing: border-box;
+padding: 20px 0;
+}
+#carrosselAutogerado {
+display: flex !important;
+flex-direction: row;
+flex-wrap: nowrap;
+gap: 15px;
+width: max-content;
+will-change: transform;
+}
+#carrosselAutogerado .carrossel-item {
+box-sizing: border-box;
+flex: 0 0 180px;
+width: 180px !important;
+min-width: 180px !important;
+max-width: 180px !important;
+}
+.carrossel-seta {
+z-index: 20;
+cursor: pointer;
+}
+/* Mantém as setas visíveis por cima dos cards */
+#setaAnterior {
+left: 15px;
+}
+#setaProximo {
+right: 15px;
+}
+
