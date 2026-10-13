@@ -139,7 +139,7 @@ body {
 
 .btn-hero {
   padding: 14px 28px;
-  border-radius: 30px; /* Bordas bem arredondadas modernas */
+  border-radius: 30px; 
   font-weight: 600;
   text-decoration: none;
   font-size: 16px;
@@ -162,13 +162,13 @@ body {
   border: 1px solid rgba(230, 81, 0, 0.2);
 }
 .btn-orange {
-  background-color: #E24A00; /* Laranja do botão */
+  background-color: #E24A00;
   color: #FFFFFF;
   font-family: Arial, sans-serif;
   font-weight: bold;
   padding: 10px 30px;
-  border: none; /* Remove totalmente a borda cinza padrão */
-  border-radius: 50px; /* Deixa as pontas totalmente arredondadas */
+  border: none;
+  border-radius: 50px; 
   cursor: pointer;
 }
 
@@ -183,7 +183,7 @@ body {
   max-width: 100%;
   height: 380px;
   object-fit: cover;
-  border-radius: 24px; /* Bordas arredondadas na foto grande */
+  border-radius: 24px; 
 }
 .hero-filtros-card {
   background-color: #FFFFFF;
@@ -225,7 +225,7 @@ body {
 }
 
 .filtro-item-horizontal {
-  position: relative; /* Necessário para o dropdown flutuar abaixo */
+  position: relative; 
   z-index: 1001;
 }
 
@@ -276,12 +276,12 @@ body {
 
 
 
-/* Classe que o JS vai injetar para abrir */
+/* JS vai injetar para abrir */
 .filtro-item-horizontal.ativo .filtro-dropdown-content {
   display: flex;
 }
 
-/* Rotação básica da setinha ao abrir */
+
 .filtro-item-horizontal.ativo .seta {
   transform: rotate(180deg);
 }
@@ -388,10 +388,10 @@ body {
 
 
     .card-title {
-       font-family: 'Montserrat', sans-serif; /* Aplica a fonte de destaque */
-      font-weight: 800;                      /* Deixa a letra bem marcante e gordinha */
-      font-size: 1.9rem;                     /* Tamanho ideal para destacar o nome */
-      color: var(--cor-marrom-texto, #3E2723); /* Mantém o marrom escuro padrão do seu site */
+       font-family: 'Montserrat', sans-serif; 
+      font-weight: 800;                      
+      font-size: 1.9rem;                     
+      color: var(--cor-marrom-texto, #3E2723); 
       letter-spacing: -0.5px;;
     }
     
@@ -639,7 +639,7 @@ body {
 
 .pet-sugestao img {
     width: 100%;
-    height: 360px; /* Ajuste sutil na altura da foto para harmonizar com os 1200px */
+    height: 360px;
     object-fit: contain;
     display: block;
     border-bottom: 1px solid rgba(62, 39, 35, 0.06);
@@ -676,8 +676,8 @@ body {
 .erro-dog-box {
   width: 100px;
   height: 90px;
-  position: relative !important; /* Fixa os elementos absolutos localmente */
-  margin: 1.5rem auto 0 auto;    /* Centraliza e empurra para baixo da frase */
+  position: relative !important; 
+  margin: 1.5rem auto 0 auto;    
   display: block;
 }
 
@@ -739,7 +739,7 @@ body {
   75% { transform: rotate(8deg); }
 }
 
-/* Splash Screen em tela cheia */
+
 #splash-screen {
   position: fixed;
   top: 0;
@@ -755,46 +755,46 @@ body {
   transition: opacity 1.8s ease, visibility 1.8s;
 }
 
-/* Fundo com imagens passando da direita para esquerda */
+
 .bg-slider {
   position: absolute;
   left: 0;
   display: flex;
   gap: 20px;
   width: max-content;
-  opacity: 0.3; /* Suave para não ofuscar a logo */
+  opacity: 0.3; 
 }
 
-/* Estilo das imagens (reduzido para caber 3 faixas) */
+
 .bg-slider img {
-  width: 250px;       /* Um pouco menores para 3 faixas */
-  height: 180px;      /* Um pouco menores para 3 faixas */
+  width: 250px;       
+  height: 180px;      
   object-fit: cover;
   border-radius: 12px;
 }
 
-/* --- Posicionamento e Animação Específica para cada Faixa --- */
+
 
 /* Faixa SUPERIOR */
 .bg-slider.top {
-  top: 5vh; /* 5% da altura da tela a partir do topo */
-  animation: slideLeft_Top 15s linear infinite; /* Animação própria, um pouco mais lenta */
+  top: 5vh;
+  animation: slideLeft_Top 15s linear infinite; 
 }
 
-/* Faixa CENTRAL (sua faixa original ajustada) */
+/* Faixa CENTRAL  */
 .bg-slider.center {
   top: 50%;
-  transform: translateY(-5%); /* Centraliza verticalmente */
-  animation: slideLeft_Center 12s linear infinite; /* Sua animação original */
+  transform: translateY(-5%);
+  animation: slideLeft_Center 12s linear infinite; 
 }
 
 /* Faixa INFERIOR */
 .bg-slider.bottom {
-  bottom: 5vh; /* 5% da altura da tela a partir do fundo */
-  animation: slideLeft_Bottom 15s linear infinite; /* Animação própria, um pouco mais lenta ainda */
+  bottom: 5vh; 
+  animation: slideLeft_Bottom 15s linear infinite; 
 }
 
-/* --- Novas Animações Independentes --- */
+
 
 /* Animação para a faixa SUPERIOR */
 @keyframes slideLeft_Top {
@@ -802,7 +802,7 @@ body {
   100% { transform: translateX(-100%); }
 }
 
-/* Animação para a faixa CENTRAL (ajustada para manter a centralização vertical) */
+/* Animação para a faixa CENTRAL*/
 @keyframes slideLeft_Center {
   0% { transform: translateY(-50%) translateX(100vw); }
   100% { transform: translateY(-50%) translateX(-100%); }
@@ -816,13 +816,13 @@ body {
 .hidden {
   opacity: 5;
   visibility: hidden;
-  display: none !important; /* Força o elemento a sumir e parar a renderização */
+  display: none !important; 
 }
 .logo-container img {
-  /* Mantém as outras propriedades que você já tem (largura, etc) */
-  width: 980px; /* Exemplo, mantenha o seu */
+  
+  width: 980px;
 
-  /* ADICIONE ESTA LINHA: Um contorno laranja suave e preciso */
+
   filter: drop-shadow(0px 0px 2px #f38f1d) 
           drop-shadow(0px 0px 2px #f38f1d);
 }
@@ -865,7 +865,7 @@ body {
   display: none !important;
 }
 
-/* 2. Quando o JavaScript adicionar a classe "active", o filtro ABRE */
+
 .filter-group.active .filter-content {
   display: block !important;
 }
@@ -914,21 +914,21 @@ body {
 }
 
 
-/* Garante uma transição suave de opacidade quando o JS alterar as fotos */
+
 .pet-img-fixa {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantém o preenchimento total que você gostou */
+    object-fit: cover; 
     transition: opacity 0.3s ease-in-out;
     cursor: pointer;
 }
 
 
 .minha-imagem-retangular {
-    width: 100%;             /* Ocupa toda a largura disponível do bloco */
+    width: 100%;            
     height: auto;            
-    aspect-ratio: 16 / 9;    /* 💡 TRUQUE RECOMENDADO: Força o formato retangular moderno */
-    object-fit: cover;       /* Preenche o retângulo sem distorcer o animal */
+    aspect-ratio: 16 / 9;    
+    object-fit: cover;       
 }
 
 
@@ -1063,7 +1063,7 @@ body {
   max-width: 100vw !important;
   overflow: hidden !important;
   background-color: transparent !important;
-  padding: 20px 0 !important; /* Reduzido o espaçamento vertical */
+  padding: 20px 0 !important; 
   display: block !important;
 }
 
@@ -1090,7 +1090,7 @@ body {
 }
 
 
-/*ocultar a setas quando o mouse não estiver sobre o carrossel*/
+
 .carrossel-seta {
   opacity: 0;
   pointer-events: none;
@@ -1150,15 +1150,14 @@ body {
   right: 15px;
 }
 
-/* CARD INDIVIDUAL EM TAMANHO PEQUENO (MINI) */
+
 .carrossel-item {
   background: #ffffff !important;
-  border-radius: 12px !important; /* Bordas um pouco mais suaves para o tamanho menor */
+  border-radius: 12px !important; 
   overflow: hidden !important;
   display: flex !important;
   flex-direction: column !important;
   
-  /* 💡 TRAVAS DE TAMANHO PEQUENO */
   width: 180px !important;       
   min-width: 180px !important;   
   max-width: 180px !important;   
@@ -1174,7 +1173,7 @@ body {
   transform: translateY(-3px) !important;
 }
 
-/* IMAGEM DO MINI-CARD (Corte controlado e tamanho reduzido) */
+/* IMAGEM DO MINI-CARD */
 .carrossel-img {
   width: 100% !important;
   max-width: 100% !important;
@@ -1187,14 +1186,14 @@ body {
   display: block !important;
 }
 
-/* Textos internos ajustados para caber no mini-card */
+/* Textos internos no mini-card */
 .carrossel-body {
-  padding: 10px !important; /* Menos margem interna */
+  padding: 10px !important; 
   background: #ffffff !important;
 }
 
 .carrossel-ong {
-  font-size: 0.65rem !important; /* Letra menor */
+  font-size: 0.65rem !important; 
   color: #f26522 !important;
   font-weight: bold !important;
   text-transform: uppercase !important;
@@ -1211,7 +1210,7 @@ body {
 .carrossel-title {
   font-family: 'Segoe UI', sans-serif !important;
   font-weight: 800 !important;                      
-  font-size: 1.1rem !important; /* Nome menor para não quebrar linha */                    
+  font-size: 1.1rem !important;                    
   color: #3E2723 !important; 
   letter-spacing: -0.3px !important;
 }
@@ -1228,7 +1227,7 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-50% - 7.5px)); /* Ajustado para a metade do gap menor */
+    transform: translateX(calc(-50% - 7.5px)); 
   }
 }
 
@@ -1268,11 +1267,11 @@ body {
   
   box-shadow: 0 3px 10px rgba(62, 39, 35, 0.20);
   
-  /* CORREÇÃO: Alinhado com o controle de opacidade do mouse sem travar o motor */
+  
   transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
-/* Efeito ao passar o mouse */
+
 .carrossel-seta:hover {
   background-color: var(--cor-laranja-principal);
   color: #FFFFFF;
