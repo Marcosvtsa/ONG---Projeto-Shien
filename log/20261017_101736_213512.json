@@ -1,0 +1,10 @@
+{
+    "data_proc": "20261017",
+    "hora_proc": "101736",
+    "cliente": 213512,
+    "meio_pgto": 1,
+    "valor_proc": 2000.00,
+    "valor_mdr": 60.00,
+    "valor_credito": 1940.00,
+    "data_credito": "20261019"
+}
