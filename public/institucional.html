@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Institucional - Meu Amigo de Pata</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: white;
+            color: black;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 5%;
+            background: black;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #f26522;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        nav a {
+            color: #f26522;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #f26522;
+        }
+
+        .botoes-header {
+            display: flex;
+            gap: .8rem;
+        }
+
+        .botao-header {
+            padding: .7rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .quero-adotar {
+            background: #f26522;
+            color: white;
+        }
+
+        .seja-parceiro {
+            border: 2px solid #f26522;
+            color: #f26522;
+        }
+
+
+        /* =========================
+           BANNER
+        ========================= */
+
+        .banner {
+            background: lightblue;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .banner-conteudo {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .banner h1 {
+            margin: 0 0 1rem;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .banner h1 span {
+            color: #f26522;
+        }
+
+        .banner p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        .conteudo {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .secao {
+            margin-bottom: 3.5rem;
+        }
+
+        .secao h2 {
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .secao h2 span {
+            color: #f26522;
+        }
+
+        .secao p {
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+        }
+
+        .icone {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            margin-bottom: .7rem;
+        }
+
+        .card p {
+            margin: 0;
+        }
+
+
+        /* =========================
+           ETAPAS
+        ========================= */
+
+        .etapas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .etapa {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+        }
+
+        .numero {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f26522;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .etapa h3 {
+            margin-bottom: .6rem;
+        }
+
+        .etapa p {
+            margin: 0;
+        }
+
+
+        /* =========================
+           LINK
+        ========================= */
+
+        .link-adocao {
+            color: #f26522;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .link-adocao:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           PROPÓSITO
+        ========================= */
+
+        .proposito {
+            background: lightblue;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .proposito h2 {
+            color: #f26522;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .etapas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .banner h1 {
+                font-size: 2rem;
+            }
+
+            .etapas {
+                grid-template-columns: 1fr;
+            }
+
+            .botoes-header {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            Meu amigo de Patas
+        </div>
+
+
+        <nav>
+
+            <a href="adote.html">
+                Início
+            </a>
+
+            <a href="institucional.html">
+                Institucional
+            </a>
+
+            <a href="ongs.html">
+                ONGs/Protetores
+            </a>
+
+            <a href="unidades.html">
+                Unidades
+            </a>
+
+            <a href="faq.html">
+                FAQ
+            </a>
+
+        </nav>
+
+
+        <div class="botoes-header">
+
+            <a
+                href="adote.html"
+                class="botao-header quero-adotar"
+            >
+                Quero adotar
+            </a>
+
+
+            <a
+                href="parceiro.html"
+                class="botao-header seja-parceiro"
+            >
+                Seja parceiro
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         BANNER
+    ========================= -->
+
+    <section class="banner">
+
+        <div class="banner-conteudo">
+
+            <h1>
+                Sobre o Meu<span> Amigo</span> de <span>Pata</span>
+            </h1>
+
+            <p>
+                O Programa Meu Amigo de Pata é a conexão que faltava entre você e o seu melhor amigo: através do cadastro e atuação de ONGs/protetores independentes e diversas instituições parceiras, milhares de cães e gatos têm a chance de encontrar um lar todos os dias. Para nós, adotar é um momento de felicidade, que deve ser construído com parceria, cuidado e responsabilidade.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================= -->
+
+    <main class="conteudo">
+
+
+      <!-- SOBRE -->
+
+        <section class="secao">
+
+            <h2>
+                O QUE EU DEVO FAZER PARA <span>ADOTAR</span> MEU MELHOR AMIGO <span>AGORA</span>?
+            </h2>
+
+
+            <p>
+               Para adotar, você pode ir presencialmente à uma loja Petz que tenha espaço dedicado à adoção. Você pode consultar a lista de lojas <a href="unidades.html" class="link-adocao">aqui</a>. Como a nossa intenção é fazer você se apaixonar por um pet agora mesmo, disponibilizamos diversos cães e gatos de ONGs/protetores selecionados <a href="index.html" class="link-adocao">aqui</a> no nosso site para que você já escolha um. Que tal?
+            </p>
+            <p>
+            Se você se apaixonar por um dos pets aqui no site , basta preencher o formulário de interesse online e esperar o contato da ONG/protetor para marcar de conhecer o pet presencialmente em uma das lojas Petz, e assim, prosseguir com o processo de adoção. O contato da ONG/protetor é feito em até 48h depois de enviado o formulário.
+
+            </p>
+        </section>
+
+
+
+        <!-- O QUE FAZEMOS -->
+
+        <section class="secao">
+
+            <h2>
+                O que <span>fazemos</span>
+            </h2>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <div class="icone">
+                        🐶
+                    </div>
+
+                    <h3>
+                        Adoção responsável
+                    </h3>
+
+                    <p>
+                        Ajudamos a conectar animais que
+                        precisam de um lar com pessoas
+                        interessadas em adotar.
+                    </p>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <div class="icone">
+                        ❤️
+                    </div>
+
+                    <h3>
+                        Bem-estar animal
+                    </h3>
+
+                    <p>
+                        Incentivamos o cuidado, o respeito
+                        e a responsabilidade durante toda
+                        a jornada de adoção.
+                    </p>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <div class="icone">
+                        🤝
+                    </div>
+
+                    <h3>
+                        Parcerias
+                    </h3>
+
+                    <p>
+                        Trabalhamos em conjunto com ONGs
+                        e protetores que atuam na causa
+                        animal.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- COMO FUNCIONA -->
+
+        <section class="secao">
+
+            <h2>
+                Como <span>funciona</span>
+            </h2>
+
+
+            <p>
+                O processo de adoção envolve diferentes
+                etapas para que o encontro entre o pet e
+                sua nova família aconteça de maneira
+                responsável.
+            </p>
+
+
+            <div class="etapas">
+
+
+                <div class="etapa">
+
+                    <div class="numero">
+                        1
+                    </div>
+
+                    <h3>
+                        Conheça
+                    </h3>
+
+                    <p>
+                        Encontre um pet que combine
+                        com você e sua rotina.
+                    </p>
+
+                </div>
+
+
+
+                <div class="etapa">
+
+                    <div class="numero">
+                        2
+                    </div>
+
+                    <h3>
+                        Interesse
+                    </h3>
+
+                    <p>
+                        Demonstre interesse em
+                        realizar a adoção.
+                    </p>
+
+                </div>
+
+
+
+                <div class="etapa">
+
+                    <div class="numero">
+                        3
+                    </div>
+
+                    <h3>
+                        Avaliação
+                    </h3>
+
+                    <p>
+                        A ONG ou protetor responsável
+                        avalia o perfil do adotante.
+                    </p>
+
+                </div>
+
+
+
+                <div class="etapa">
+
+                    <div class="numero">
+                        4
+                    </div>
+
+                    <h3>
+                        Novo lar
+                    </h3>
+
+                    <p>
+                        Com tudo certo, começa uma
+                        nova história juntos.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- POSSE RESPONSÁVEL -->
+
+        <section class="secao">
+
+            <h2>
+                A importância da
+                <span>adoção responsável</span>
+            </h2>
+
+
+            <p>
+                Adotar um animal significa assumir uma
+                responsabilidade que pode durar muitos anos.
+            </p>
+
+
+            <p>
+                Antes de adotar, é importante considerar
+                sua rotina, espaço disponível, condições
+                financeiras, tempo e disposição para cuidar
+                de um animal.
+            </p>
+
+
+            <p>
+                Uma adoção responsável proporciona ao pet
+                segurança, carinho, alimentação adequada,
+                cuidados de saúde e uma família preparada
+                para recebê-lo.
+            </p>
+
+        </section>
+
+
+
+        <!-- PROPÓSITO -->
+
+        <section class="secao proposito">
+
+            <h2>
+                Nosso propósito
+            </h2>
+
+
+            <p>
+                Incentivar a adoção responsável, fortalecer
+                a conexão entre pessoas e animais e contribuir
+                para uma realidade com menos abandono e mais
+                lares para os pets.
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Adote Petz — Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
