@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento - Meu amigo de pata </title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .pagina-extra {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .pagina-extra h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--cor-marrom-texto);
+      margin-bottom: 10px;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+
+    .form-container {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(62, 39, 35, 0.08);
+      border: 1px solid rgba(62, 39, 35, 0.08);
+      margin-top: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: var(--cor-marrom-texto);
+      font-size: 15px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+      background-color: #FDFBF9;
+      border: 1px solid rgba(62, 39, 35, 0.12);
+      color: var(--cor-marrom-texto);
+      padding: 12px 18px;
+      font-size: 15px;
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.2s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+      border-color: var(--cor-laranja-principal);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
+    }
+
+    .form-group small {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--cor-marrom-suave);
+      font-size: 13px;
+    }
+
+    .form-group p {
+      font-weight: 600;
+      color: var(--cor-marrom-texto);
+      margin-bottom: 8px;
+    }
+
+    .pagamento-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Estilização moderna para os Radio Buttons (Pix, Debit, Credit) */
+        .radio-group-container {
+          display: flex;
+          gap: 20px;
+          margin-top: 5px;
+        }
+
+        .radio-group-container label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 500;
+          cursor: pointer;
+          background-color: #FDFBF9;
+          border: 1px solid rgba(62, 39, 35, 0.12);
+          padding: 10px 16px;
+          border-radius: 12px;
+          transition: all 0.2s ease;
+          flex: 1;
+          justify-content: center;
+        }
+
+        .radio-group-container label:hover {
+          border-color: var(--cor-laranja-principal);
+          background-color: #FFFFFF;
+        }
+
+        .radio-group-container input[type="radio"] {
+          accent-color: var(--cor-laranja-principal);
+          appearance: auto;
+          -webkit-appearance: radio;
+          -moz-appearance: radio;
+          width: auto !important;
+          height: auto !important;
+          flex: none !important;
+          cursor: pointer;
+    }
+
+    /* Botão Principal */
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 50px;
+      background-color: var(--cor-laranja-principal);
+      color: #FFFFFF;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(230, 81, 0, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 81, 0, 0.35);
+    }
+
+    .voltar {
+      display: inline-block;
+      margin-top: 25px;
+      color: var(--cor-laranja-principal);
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .voltar:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      color: var(--cor-marrom-suave);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-principal">
+    <div class="header-logo-area">
+      <img src="imagens/logo/logo.webp" alt="Logo Meu Amigo de Pata" class="site-logo">
+      <span class="site-name" style="font-size: 24px; color: var(--cor-laranja-principal);"></span>
+    </div>
+
+    <nav class="header-nav">
+      <a href="index.html">Início</a>
+      <a href="institucional.html">Institucional</a>
+      <a href="ongs.html">ONGs/Protetores</a>
+      <a href="index.html">Adoção</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="header-actions" style="display: flex; gap: 10px;">
+      <a href="index.html" class="btn-hero btn-sugestao" style="text-decoration:none; padding: 10px 20px; font-size: 14px;">Quero adotar</a>
+    </div>
+  </header>
+
+  <main class="pagina-extra">
+    <section class="form-container">
+      <h2>Realizar doação</h2>
+      <p style="text-align: center; color: var(--cor-marrom-suave); margin-bottom: 25px;">Preencha os dados abaixo para concluir sua contribuição com o projeto.</p>
+
+      <form id="paymentForm" action="/pagto" method="POST">
+
+        <div class="form-group">
+          <label for="codigo">Código:</label>
+          <input
+            type="text"
+            id="codigo"
+            name="codigo"
+            inputmode="numeric"
+            pattern="[0-9]{6}"
+            maxlength="6"
+            placeholder="Ex: 123456"
+            required
+          >
+          <small>Digite exatamente 6 números.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="valor">Valor (R$):</label>
+          <input
+            type="number"
+            id="valor"
+            name="valor"
+            min="1.00"
+            step="1.00"
+            placeholder="0.00"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <p>Tipo de pagamento:</p>
+          <div class="radio-group-container">
+            <label>
+              <input type="radio" name="tipo" value="0" checked required>
+              Pix
+            </label>
+            <label>
+              <input type="radio" name="tipo" value="1">
+              Débito
+            </label>
+            <label>
+              <input type="radio" name="tipo" value="2">
+              Crédito
+            </label>
+          </div>
+        </div>
+
+        <button type="submit">
+          Processar pagamento
+        </button>
+
+      </form>
+
+      <div id="message"></div>
+    </section>
+
+    <a class="voltar" href="index.html">← Voltar para adoção</a>
+     
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Meu amigo de pata</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
