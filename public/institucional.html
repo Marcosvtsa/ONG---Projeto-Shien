@@ -8,307 +8,334 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Institucional - Meu Amigo de Pata</title>
+    <link rel="stylesheet" href="css/style.css">
 
 
     <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: white;
-            color: black;
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 5%;
-            background: black;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #f26522;
-        }
-
-        nav {
-            display: flex;
-            gap: 1.8rem;
-        }
-
-        nav a {
-            color: #f26522;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: #f26522;
-        }
-
-        .botoes-header {
-            display: flex;
-            gap: .8rem;
-        }
-
-        .botao-header {
-            padding: .7rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .quero-adotar {
-            background: #f26522;
-            color: white;
-        }
-
-        .seja-parceiro {
-            border: 2px solid #f26522;
-            color: #f26522;
-        }
-
-
-        /* =========================
-           BANNER
-        ========================= */
-
-        .banner {
-            background: lightblue;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .banner-conteudo {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .banner h1 {
-            margin: 0 0 1rem;
-            font-size: 2.5rem;
-            color: #333;
-        }
-
-        .banner h1 span {
-            color: #f26522;
-        }
-
-        .banner p {
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.7;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-
-        /* =========================
-           CONTEÚDO
-        ========================= */
-
-        .conteudo {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .secao {
-            margin-bottom: 3.5rem;
-        }
-
-        .secao h2 {
-            margin-bottom: 1.2rem;
-            font-size: 1.8rem;
-            color: #333;
-        }
-
-        .secao h2 span {
-            color: #f26522;
-        }
-
-        .secao p {
-            line-height: 1.7;
-            color: #444;
-            margin-bottom: 1rem;
-        }
-
-
-        /* =========================
-           CARDS
-        ========================= */
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            background: #fff;
-            padding: 1.8rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
-        }
-
-        .icone {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .card h3 {
-            margin-bottom: .7rem;
-        }
-
-        .card p {
-            margin: 0;
-        }
-
-
-        /* =========================
-           ETAPAS
-        ========================= */
-
-        .etapas {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .etapa {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
-        }
-
-        .numero {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #f26522;
-            color: #fff;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .etapa h3 {
-            margin-bottom: .6rem;
-        }
-
-        .etapa p {
-            margin: 0;
-        }
-
-
-        /* =========================
-           LINK
-        ========================= */
-
-        .link-adocao {
-            color: #f26522;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .link-adocao:hover {
-            text-decoration: underline;
-        }
-
-
-        /* =========================
-           PROPÓSITO
-        ========================= */
-
-        .proposito {
-            background: lightblue;
-            padding: 2rem;
-            border-radius: 12px;
-        }
-
-        .proposito h2 {
-            color: #f26522;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-
-        /* =========================
-           RESPONSIVO
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .etapas {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .banner h1 {
-                font-size: 2rem;
-            }
-
-            .etapas {
-                grid-template-columns: 1fr;
-            }
-
-            .botoes-header {
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-            }
-
-        }
-
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+    color: black;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5%;
+    background: white;
+    border-bottom: 3px solid #f26522;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f26522;
+}
+
+nav {
+    display: flex;
+    gap: 1.8rem;
+}
+
+nav a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #f26522;
+}
+
+.botoes-header {
+    display: flex;
+    gap: .8rem;
+}
+
+.botao-header {
+    padding: .7rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.quero-adotar {
+    background: #f26522;
+    color: white;
+    border: 2px solid #f26522;
+}
+
+.seja-parceiro {
+    border: 2px solid #f26522;
+    color: #f26522;
+    background: white;
+}
+
+
+/* =========================
+   BANNER
+========================= */
+
+.banner {
+    background: white;
+    border: 2px solid #f26522;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.banner-conteudo {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.banner h1 {
+    margin: 0 0 1rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.banner h1 span {
+    color: #f26522;
+}
+
+.banner p {
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* Caixa que envolve cada bloco de texto */
+.secao {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: white;
+    border: 2px solid #f26522;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(242, 101, 34, .18);
+}
+
+.secao h2 {
+    margin: 0 0 1.2rem;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.secao h2 span {
+    color: #f26522;
+}
+
+.secao p {
+    line-height: 1.7;
+    color: #444;
+    margin: 0 0 1rem;
+}
+
+.secao p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: white;
+    padding: 1.8rem;
+    border: 1px solid #f3d3c0;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(242, 101, 34, .12);
+    text-align: center;
+}
+
+/* Tamanho dos emojis */
+.icone {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    margin: 0 0 .7rem;
+}
+
+.card p {
+    margin: 0;
+}
+
+
+/* =========================
+   ETAPAS
+========================= */
+
+.etapas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.etapa {
+    background: white;
+    padding: 1.5rem;
+    border: 1px solid #f3d3c0;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(242, 101, 34, .12);
+}
+
+.numero {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f26522;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.etapa h3 {
+    margin: 0 0 .6rem;
+}
+
+.etapa p {
+    margin: 0;
+}
+
+
+/* =========================
+   LINK
+========================= */
+
+.link-adocao {
+    color: #f26522;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link-adocao:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   PROPÓSITO
+========================= */
+
+.secao.proposito {
+    background: white;
+    border-color: #f26522;
+}
+
+.proposito h2 {
+    color: #f26522;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #f26522;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Tamanho do emoji do rodapé */
+footer .emoji {
+    font-size: 1.4rem;
+    vertical-align: middle;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+
+    header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .etapas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .secao {
+        padding: 1.4rem;
+    }
+
+    .etapas {
+        grid-template-columns: 1fr;
+    }
+
+    .botoes-header {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+}
     </style>
 
 </head>
@@ -330,24 +357,16 @@
 
         <nav>
 
-            <a href="adote.html">
+            <a href="index.html">
                 Início
             </a>
 
-            <a href="institucional.html">
-                Institucional
+            <a href="Pagamento.html">
+                Doação
             </a>
 
-            <a href="ongs.html">
-                ONGs/Protetores
-            </a>
-
-            <a href="unidades.html">
-                Unidades
-            </a>
-
-            <a href="faq.html">
-                FAQ
+              <a href="adote.html">
+                Adoção
             </a>
 
         </nav>
@@ -364,7 +383,7 @@
 
 
             <a
-                href="parceiro.html"
+                href="pagamento.html"
                 class="botao-header seja-parceiro"
             >
                 Seja parceiro
@@ -389,8 +408,7 @@
             </h1>
 
             <p>
-                O Programa Meu Amigo de Pata é a conexão que faltava entre você e o seu melhor amigo: através do cadastro e atuação de ONGs/protetores independentes e diversas instituições parceiras, milhares de cães e gatos têm a chance de encontrar um lar todos os dias. Para nós, adotar é um momento de felicidade, que deve ser construído com parceria, cuidado e responsabilidade.
-            </p>
+                Conectamos pessoas a cães e gatos de ONGs, com foco em adoção responsável e bem-estar animal.
 
         </div>
 
@@ -414,11 +432,10 @@
             </h2>
 
 
-            <p>
-               Para adotar, você pode ir presencialmente à uma loja Petz que tenha espaço dedicado à adoção. Você pode consultar a lista de lojas <a href="unidades.html" class="link-adocao">aqui</a>. Como a nossa intenção é fazer você se apaixonar por um pet agora mesmo, disponibilizamos diversos cães e gatos de ONGs/protetores selecionados <a href="index.html" class="link-adocao">aqui</a> no nosso site para que você já escolha um. Que tal?
+            <p> 
+             Escolha um pet da ONG <a href="adote.html" class="link-adocao">aqui</a> no site.
             </p>
-            <p>
-            Se você se apaixonar por um dos pets aqui no site , basta preencher o formulário de interesse online e esperar o contato da ONG/protetor para marcar de conhecer o pet presencialmente em uma das lojas Petz, e assim, prosseguir com o processo de adoção. O contato da ONG/protetor é feito em até 48h depois de enviado o formulário.
+            <p>Achou seu pet? Envie o formulário de interesse. A ONG entra em contato em até 48h
 
             </p>
         </section>
@@ -448,9 +465,7 @@
                     </h3>
 
                     <p>
-                        Ajudamos a conectar animais que
-                        precisam de um lar com pessoas
-                        interessadas em adotar.
+                          Ligamos animais sem lar a quem quer adotar.
                     </p>
 
                 </div>
@@ -468,32 +483,14 @@
                     </h3>
 
                     <p>
-                        Incentivamos o cuidado, o respeito
-                        e a responsabilidade durante toda
-                        a jornada de adoção.
+                         Cuidado, respeito e responsabilidade em cada etapa.
                     </p>
 
                 </div>
 
 
 
-                <div class="card">
-
-                    <div class="icone">
-                        🤝
-                    </div>
-
-                    <h3>
-                        Parcerias
-                    </h3>
-
-                    <p>
-                        Trabalhamos em conjunto com ONGs
-                        e protetores que atuam na causa
-                        animal.
-                    </p>
-
-                </div>
+              
 
 
             </div>
@@ -571,7 +568,7 @@
                     </h3>
 
                     <p>
-                        A ONG ou protetor responsável
+                        A ONG 
                         avalia o perfil do adotante.
                     </p>
 
@@ -620,18 +617,12 @@
 
 
             <p>
-                Antes de adotar, é importante considerar
-                sua rotina, espaço disponível, condições
-                financeiras, tempo e disposição para cuidar
-                de um animal.
+                Antes de decidir, avalie sua rotina, espaço, condições financeiras, tempo e disposição.
             </p>
 
 
             <p>
-                Uma adoção responsável proporciona ao pet
-                segurança, carinho, alimentação adequada,
-                cuidados de saúde e uma família preparada
-                para recebê-lo.
+               Isso garante ao pet segurança, carinho, alimentação, saúde e uma família preparada.
             </p>
 
         </section>
@@ -648,10 +639,7 @@
 
 
             <p>
-                Incentivar a adoção responsável, fortalecer
-                a conexão entre pessoas e animais e contribuir
-                para uma realidade com menos abandono e mais
-                lares para os pets.
+                Estimular a adoção responsável e reduzir o abandono, criando mais lares para os pets.
             </p>
 
         </section>
@@ -667,9 +655,8 @@
 
     <footer>
 
-        <p>
-            © 2026 Adote Petz — Todos os direitos reservados.
-        </p>
+     <p>&copy; 2026 MEU AMIGO DE PATA. Todos os direitos reservados.</p>
+     <p>Feito com ❤️ para quem ama os animais.</p>
 
     </footer>
 
