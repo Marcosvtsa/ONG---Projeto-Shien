@@ -563,7 +563,7 @@ PALMAS: [
       }
 
 
-      // Cria as cidades
+      // Cria as cidades (com a tag fechada corretamente)
 
       cidades.forEach(function(cidade) {
 
@@ -685,14 +685,12 @@ PALMAS: [
         input.dataset.selecionada = "false";
 
         // Esconde as lojas
-        const listaLojas = document.getElementById("container-lojas");
-    if (listaLojas) {
-      listaLojas.innerHTML = `
-        <p class="lojas-placeholder">
-          Selecione uma cidade primeiro para visualizar as Lojas.
-        </p>
-      `;
-    }
+        document.getElementById("listaLojas").innerHTML = `
+          <p class="lojas-placeholder">
+            Selecione uma cidade primeiro
+            para visualizar as Lojas.
+          </p>
+        `;
 
         aplicarFiltros();
         return;
@@ -944,16 +942,17 @@ PALMAS: [
 const emptyState = document.getElementById("emptyState");
 const petGrid = document.querySelector(".pet-grid");
 
-if (emptyState) {
-    if (petsVisiveis === 0) {
-      emptyState.style.display = "block"; // Mostra o bloco fixo de texto do HTML
-      if (petGrid) petGrid.style.display = "none"; // Esconde a grade de pets se estiver vazia
-    } else {
-      emptyState.style.display = "none"; // Oculta o aviso de nenhum pet encontrado
-      if (petGrid) petGrid.style.display = "grid"; // Mostra a grade com os pets de volta
-    }
-  }
+if (petsVisiveis === 0) {
+  emptyState.style.display = "flex";
+  petGrid.style.display = "none";
+} else {
+  emptyState.style.display = "none";
+  petGrid.style.display = "grid";
 }
+     
+    
+    }
+    
     /*=================
     calcual idade
     =================*/
@@ -1130,85 +1129,109 @@ function abrirSugestoes() {
 ==============*/
 
 function abrirSugestoes() {
+
     const modal = document.getElementById("modalSugestoes");
     const container = document.getElementById("petsSugestoes");
 
-    // Pega todos os cards dos pets originais da página
+    // Pega todos os cards dos pets
     const pets = Array.from(document.querySelectorAll(".card"));
 
-    // Limpa as sugestões anteriores e limpa o campo de busca para uma nova pesquisa
+    // Limpa as sugestões anteriores
     container.innerHTML = "";
-    const inputBusca = document.getElementById('searchInput');
-    const mensagemDeErro = document.getElementById('noResultsMessage');
-    if (inputBusca) inputBusca.value = ""; 
-    if (mensagemDeErro) mensagemDeErro.style.display = "none";
 
-    // Se não houver nenhum pet na página
+    // Se não houver pets
     if (pets.length === 0) {
+
         container.innerHTML = `
             <p style="text-align: center; grid-column: 1 / -1;">
                 Nenhum pet disponível no momento.
             </p>
         `;
+
         modal.style.display = "flex";
         return;
     }
 
-    // 1. Embaralha os pets originais
+    // Embaralha os pets
     const petsEmbaralhados = [...pets].sort(() => Math.random() - 0.5);
 
-    // 2. Escolhe no máximo 3 para exibir como sugestão
+    // Escolhe no máximo 3
     const petsEscolhidos = petsEmbaralhados.slice(0, 3);
 
-    // 3. Monta cada um dos 3 cards novos dentro do modal
+
     petsEscolhidos.forEach(pet => {
-        // Pega as informações de texto e imagem do card original
+
+        // Pega as informações do seu card
         const imagem = pet.querySelector(".card-img")?.src || "";
+
         const nome = pet.querySelector(".card-title")?.textContent.trim() || "Pet";
+
         const sexo = pet.querySelector(".card-title-row span:nth-child(2)")?.textContent.trim() || "";
+
         const ong = pet.querySelector(".card-ong")?.textContent.trim() || "";
+
         const localizacao = pet.querySelector(".card-location")?.textContent.trim() || "";
+
         const idade = pet.querySelector(".idade-animal")?.textContent.trim() || "";
 
-        // Cria o elemento HTML do novo card de sugestão
+
+        // Cria o card da sugestão
         const sugestao = document.createElement("div");
+
         sugestao.className = "pet-sugestao";
 
-        // 🌟 PASSO CRUCIAL: Transfere os dados invisíveis dos filtros para este novo card
-        sugestao.setAttribute("data-estado", pet.dataset.estado || "");
-        sugestao.setAttribute("data-cidade", pet.dataset.cidade || "");
-        sugestao.setAttribute("data-loja", pet.dataset.loja || "");
-        sugestao.setAttribute("data-porte", pet.dataset.porte || "");
-        sugestao.setAttribute("data-sexo", pet.dataset.sexo || "");
-        sugestao.setAttribute("data-especie", pet.dataset.especie || "");
-        sugestao.setAttribute("data-nascimento", pet.dataset.nascimento || "");
 
-        // Injeta a estrutura visual do card
         sugestao.innerHTML = `
-            <img src="${imagem}" alt="${nome}">
+
+            <img
+                src="${imagem}"
+                alt="${nome}"
+            >
+
             <div class="info-sugestao">
+
                 <h3>${nome}</h3>
+
                 <p>${sexo}</p>
+
                 <p>${ong}</p>
+
                 <p>${localizacao}</p>
-                <p><strong>Idade:</strong> ${idade}</p>
+
+                <p>
+                    <strong>Idade:</strong>
+                    ${idade}
+                </p>
+
             </div>
+
         `;
 
-        // Configura a ação de clique para abrir o modal de detalhes do pet original
+
+        // Quando clicar no pet sugerido
         sugestao.onclick = function() {
+
+            // Primeiro fecha o modal de sugestões
             fecharSugestoes();
+
+            // Procura o botão original daquele pet
             const botao = pet.querySelector(".btn-orange");
+
+            // Abre o modal original do pet
             if (botao) {
                 botao.click();
             }
+
         };
 
-        // Adiciona o card finalizado dentro do container de sugestões
+
+        // Coloca a sugestão dentro do modal
         container.appendChild(sugestao);
+
     });
 
-    // Abre o modal de sugestões na tela mudando o display para flex
+
+    // Abre o modal de sugestões
     modal.style.display = "flex";
 }
 
@@ -1590,48 +1613,50 @@ function limparFiltros() {
     );
     atualizarIdadesCards();
 
-window.addEventListener("DOMContentLoaded", function () {
-
-    const logo = document.getElementById("logo");
+document.addEventListener("DOMContentLoaded", function () {
     const splashScreen = document.getElementById("splash-screen");
+    const logo = document.getElementById("logo");
     const sliders = document.querySelectorAll(".bg-slider");
 
-    // Segurança: se a splash não existir, não faz nada
     if (!splashScreen) {
         console.warn("Elemento #splash-screen não encontrado.");
         return;
     }
 
-    // Depois de 5 segundos, inicia a saída do logo
-    setTimeout(function () {
+    const navegarEntradas = performance.getEntriesByType("navigation");
+    const foiRecarregada = navegarEntradas.length > 0 && navegarEntradas[0].type === "reload";
 
+    const jaVisitou = sessionStorage.getItem("splashExibido");
+
+    if (jaVisitou && !foiRecarregada) {
+        splashScreen.style.display = "none";
+        return; 
+    }
+
+    sessionStorage.setItem("splashExibido", "true");
+    splashScreen.style.display = "block"; 
+   
+    setTimeout(function () {
         if (logo) {
             logo.classList.add("spin-out");
         }
-
     }, 5000);
 
-
-    // Depois de 6,5 segundos, encerra a splash
-    setTimeout(function () {
-
-        // Para as animações do fundo
+     setTimeout(function () {
+        
         sliders.forEach(function (slider) {
             slider.style.animationPlayState = "paused";
         });
 
-        // Esconde a splash
+        
         splashScreen.classList.add("hidden");
 
-        // remove completamente da tela
-        setTimeout(function () {
+         setTimeout(function () {
             splashScreen.style.display = "none";
         }, 800);
 
     }, 6500);
-
 });
-
 /*==================================================
     Alterna as imagens e lê o foco customizado do card
 ==================================================*/
@@ -1986,7 +2011,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 3. Monta o bloco de cards originais na memória
     let htmlGerado = "<!-- Bloco Original de Cards -->";
-    listaDePets.forEach(pet => {
+    petsAleatorios.forEach(pet => {
         htmlGerado += construirCardHtml(pet, false);
     });
 
