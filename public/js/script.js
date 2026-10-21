@@ -1613,31 +1613,41 @@ function limparFiltros() {
     );
     atualizarIdadesCards();
 
-window.addEventListener("DOMContentLoaded", function () {
-
-    const logo = document.getElementById("logo");
+document.addEventListener("DOMContentLoaded", function () {
     const splashScreen = document.getElementById("splash-screen");
+    const logo = document.getElementById("logo");
     const sliders = document.querySelectorAll(".bg-slider");
 
-    // Segurança: se a splash não existir, não faz nada
     if (!splashScreen) {
         console.warn("Elemento #splash-screen não encontrado.");
         return;
     }
 
+    const navegarEntradas = performance.getEntriesByType("navigation");
+    const foiRecarregada = navegarEntradas.length > 0 && navegarEntradas[0].type === "reload";
+    const jaVisitou = sessionStorage.getItem("splashExibido");
+
+    // Se já visitou e NÃO foi recarregada, esconde direto
+    if (jaVisitou && !foiRecarregada) {
+        splashScreen.style.display = "none";
+        return; 
+    }
+
+    // Se o usuário precisa ver a animação:
+    sessionStorage.setItem("splashExibido", "true");
+    
+    // REMOVIDO: splashScreen.style.display = "block"; 
+    // Motivo: Deixamos o navegador usar o display original do CSS (flex/grid)
+   
     // Depois de 5 segundos, inicia a saída do logo
     setTimeout(function () {
-
         if (logo) {
             logo.classList.add("spin-out");
         }
-
     }, 5000);
 
-
-    // Depois de 6,5 segundos, encerra a splash
+    // Depois de 7 segundos, encerra a splash
     setTimeout(function () {
-
         // Para as animações do fundo
         sliders.forEach(function (slider) {
             slider.style.animationPlayState = "paused";
@@ -1646,11 +1656,479 @@ window.addEventListener("DOMContentLoaded", function () {
         // Esconde a splash
         splashScreen.classList.add("hidden");
 
-        // Garantia extra: remove completamente da tela
+        // Remove completamente da tela após a transição
         setTimeout(function () {
             splashScreen.style.display = "none";
         }, 800);
 
-    }, 6500);
-
+    }, 7000);
 });
+
+/*==================================================
+    Alterna as imagens e lê o foco customizado do card
+==================================================*/
+function alternarMosaicoAutomatico() {
+    const pets = Array.from(document.querySelectorAll(".card"));
+    if (pets.length === 0) return;
+
+    const listaPets = pets.map(pet => {
+        const imgEl = pet.querySelector("img");
+        return {
+            imagem: imgEl?.src || "",
+            nome: pet.querySelector("h3")?.textContent || "Pet",
+            // Se o card não tiver data-foco, aplica um padrão 
+            foco: imgEl?.getAttribute("data-foco") || (imgEl?.src.toLowerCase().includes("gato") ? "center 20%" : "center center"),
+            elementoOriginal: pet
+        };
+    });
+
+    const petsEmbaralhados = listaPets.sort(() => Math.random() - 0.5);
+    const escolhidos = petsEmbaralhados.slice(0, 3);
+
+    const img1 = document.querySelector(".pet-img-fixa.pos-1");
+    const img2 = document.querySelector(".pet-img-fixa.pos-2");
+    const img3 = document.querySelector(".pet-img-fixa.pos-3");
+
+    if (img1 && img2 && img3 && escolhidos.length >= 3) {
+        const imagensMosaico = [img1, img2, img3];
+        
+        // Efeito fade-out
+        imagensMosaico.forEach(img => img.style.opacity = "0");
+
+        setTimeout(() => {
+            // CORRIGIDO: Agora puxa os índices corretos
+            img1.src = escolhidos[0].imagem; img1.alt = escolhidos[0].nome;
+            img2.src = escolhidos[1].imagem; img2.alt = escolhidos[1].nome;
+            img3.src = escolhidos[2].imagem; img3.alt = escolhidos[2].nome;
+
+            // CORRIGIDO: ".style.style" que quebrava o script
+            img1.style.objectPosition = escolhidos[0].foco;
+            img2.style.objectPosition = escolhidos[1].foco;
+            img3.style.objectPosition = escolhidos[2].foco;
+
+            // Configura os cliques o
+            img1.onclick = () => escolhidos[0].elementoOriginal.click();
+            img2.onclick = () => escolhidos[1].elementoOriginal.click();
+            img3.onclick = () => escolhidos[2].elementoOriginal.click();
+
+            // Efeito fade-in
+            imagensMosaico.forEach(img => img.style.opacity = "1");
+        }, 300);
+    }
+}
+
+// Mantém o intervalo de 5 segundos
+ setInterval(alternarMosaicoAutomatico, 5000);
+ window.addEventListener("DOMContentLoaded", alternarMosaicoAutomatico);
+
+/* =======================================================
+   MONITORADOR AUTOMÁTICO DE SELEÇÃO DOS FILTROS
+   (Faz os pets reaparecerem assim que você desmarca algo)
+======================================================= */
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // Seleciona APENAS o input de Estado (uf), já que Cidade e Loja usam funções inline nativas
+  const radiosFiltro = document.querySelectorAll('input[name="uf"]');
+
+  radiosFiltro.forEach(radio => {
+    radio.addEventListener("click", function() {
+      if (this.previousState === true) {
+        this.checked = false;
+        this.previousState = false;
+      } else {
+        const grupo = document.querySelectorAll(`input[name="${this.name}"]`);
+        grupo.forEach(r => r.previousState = false);
+        this.previousState = true;
+      }
+
+      if (typeof aplicarFiltros === "function") {
+        aplicarFiltros();
+      }
+    });
+
+    if (radio.checked) {
+      radio.previousState = true;
+    }
+  });
+});
+/* =========================================
+   CARROSSEL DE PETS - SETAS + AUTOMÁTICO
+========================================= */
+
+window.addEventListener("DOMContentLoaded", function () {
+    const carrossel = document.getElementById("carrosselAutogerado");
+    const anterior = document.getElementById("setaAnterior");
+    const proximo = document.getElementById("setaProximo");
+
+    if (!carrossel || !anterior || !proximo) {
+        console.warn("Carrossel ou setas não encontrados.");
+        return;
+    }
+
+    const cards = Array.from(
+        carrossel.querySelectorAll(".carrossel-item")
+    );
+
+    // Os cards originais devem estar duplicados uma vez
+    const totalOriginal = Math.floor(cards.length / 2);
+
+    if (totalOriginal < 1) return;
+
+    let indice = 0;
+    let temporizador = null;
+    let animando = false;
+    let mouseSobreCarrossel = false;
+
+    const intervalo = 3000;
+    const duracao = 450;
+
+    carrossel.style.animation = "none";
+    carrossel.style.transition = `transform ${duracao}ms ease`;
+
+    function distanciaCard() {
+      if (cards.length <2) return 180;
+      return cards[1].offsetLeft - cards[0].offsetLeft;
+    }
+
+    function posicionar(animar = true) {
+        carrossel.style.transition = animar
+            ? `transform ${duracao}ms ease`
+            : "none";
+
+        carrossel.style.transform =
+            `translateX(-${indice * distanciaCard()}px)`;
+    }
+
+    function avancar() {
+        if (animando) return;
+
+        animando = true;
+        indice++;
+        posicionar(true);
+    }
+
+    function voltar() {
+        if (animando) return;
+
+        animando = true;
+
+        if (indice === 0) {
+            // Vai para a cópia final sem animação
+            indice = totalOriginal;
+            posicionar(false);
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    indice = totalOriginal - 1;
+                    posicionar(true);
+                });
+            });
+
+            return;
+        }
+
+        indice--;
+        posicionar(true);
+    }
+
+    carrossel.addEventListener("transitionend", function (event) {
+        if (
+            event.target !== carrossel ||
+            event.propertyName !== "transform"
+        ) return;
+
+        // Chegou à cópia do primeiro card: retorna ao início
+        if (indice >= totalOriginal) {
+            indice = 0;
+            posicionar(false);
+        }
+
+        animando = false;
+    });
+
+    function pararAutomatico() {
+        clearInterval(temporizador);
+        temporizador = null;
+    }
+
+    function iniciarAutomatico() {
+        pararAutomatico();
+
+        if (mouseSobreCarrossel) return;
+
+        temporizador = setInterval(() => {
+            avancar();
+        }, intervalo);
+    }
+
+    proximo.addEventListener("click", function () {
+        avancar();
+        iniciarAutomatico();
+    });
+
+    anterior.addEventListener("click", function () {
+        voltar();
+        iniciarAutomatico();
+    });
+
+    carrossel.addEventListener("mouseenter", function () {
+        mouseSobreCarrossel = true;
+        pararAutomatico();
+    });
+
+    carrossel.addEventListener("mouseleave", function () {
+        mouseSobreCarrossel = false;
+        iniciarAutomatico();
+    });
+
+    window.addEventListener("resize", function () {
+        posicionar(false);
+    });
+
+    posicionar(false);
+    iniciarAutomatico();
+
+    console.log("Carrossel iniciado com sucesso.");
+});
+
+// BANCO DE DADOS DE PETS 
+const listaDePets = [
+  //cachorro femea
+  { nome: "Ayla", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/ayla_card.webp" },
+  { nome: "Babi", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/babi_card.webp" },
+  { nome: "Bella", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/bella_card.webp" },
+  { nome: "Cacau", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/cacau_card.webp" },
+  { nome: "Meg", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/meg_card.webp" },
+  { nome: "Mel", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/mel_card.webp" },
+  { nome: "Micha", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/micha_card.webp" },
+  { nome: "Milly", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/milly_card.webp" },
+  { nome: "Minnie", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/minnie_card.webp" },
+  { nome: "Nala", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/nala_card.webp" },
+  { nome: "Nina", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/nina_card.webp" },
+  { nome: "Pandora", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/femeas/pandora_card.webp" },
+  //cachorro macho
+  { nome: "Apolo", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/apolo_card.webp" },
+  { nome: "Bento", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/bento_card.webp" },
+  { nome: "Billy", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/billy_card.webp" },
+  { nome: "Butley", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/butley_card.webp" },
+  { nome: "Chico", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/chico_card.webp" },
+  { nome: "Floquinho", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/floquinho_card.webp" },
+  { nome: "Fred", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/fred_card.webp" },
+  { nome: "Logan", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/logan_card.webp" },
+  { nome: "Luke", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/luke_card.webp" },
+  { nome: "Max", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/max_card.webp" },
+  { nome: "Max ", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/max(2)_card.webp" },
+  { nome: "Maylou", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/maylou_card.webp" },
+  { nome: "Otto", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/otto_card.webp" },
+  { nome: "Pingo", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/pingo_card.webp" },
+  { nome: "Pitoco", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/pitoco_card.webp" },
+  { nome: "Simba", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/simba_card.webp" },
+  { nome: "Theo", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/theo_card.webp" },
+  { nome: "Toby", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/toby_card.webp" },
+  { nome: "Zeus", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/cachorros/machos/zeus_card.webp" },
+  //gato femea
+  { nome: "Atena", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/atena_card.webp" },
+  { nome: "Aurora", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/aurora_card.webp" },
+  { nome: "Belinha", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/belinha_card.webp" },
+  { nome: "Betina", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/betina_card.webp" },
+  { nome: "Bia", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/bia_card.webp" },
+  { nome: "Bianca", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/bianca_card.webp" },
+  { nome: "Bolota", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/bolota_card.webp" },
+  { nome: "Brenda", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/brenda_card.webp" },
+  { nome: "Cacau", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/cacau_card.webp" },
+  { nome: "Cherrie", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/cherrie_card.webp" },
+  { nome: "Cherry", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/cherry_card.webp" },
+  { nome: "Chloe", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/chloe_card.webp" },
+  { nome: "Cora", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/cora_card.webp" },
+  { nome: "Dalini", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/dalini_card.webp" },
+  { nome: "Esmeralda", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/esmeralda_card.webp" },
+  { nome: "Frida", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/frida_card.webp" },
+  { nome: "Fumaça", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/fumaça_card.webp" },
+  { nome: "Luna", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/luna_card.webp" },
+  { nome: "Maya", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/maya_card.webp" },
+  { nome: "Mia", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/mia_card.webp" },
+  { nome: "Mimi", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/mimi_card.webp" },
+  { nome: "Nevasca", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/nevasca_card.webp" },
+  { nome: "Pandora", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/pandora_card.webp" },
+  { nome: "Pipoca", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/pipoca_card.webp" },
+  { nome: "Sushi", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/sushi_card.webp" },
+  { nome: "Zoe", sexo: "♀", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/femeas/zoe_card.webp" },
+  //Gato macho
+  { nome: "Alfredo", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/alfredo_card.webp" },
+  { nome: "Alvinho", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/alvinho_card.webp" },
+  { nome: "Apollo", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/apollo_card.webp" },
+  { nome: "Apolo", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/apolo_card.webp" },
+  { nome: "Arquimedes", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/arquimedes_card.webp" },
+  { nome: "Arthur", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/arthur_card.webp" },
+  { nome: "Banguela", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/banguela_card.webp" },
+  { nome: "Benn", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/benn_card.webp" },
+  { nome: "Caio", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/caio_card.webp" },
+  { nome: "Capuccino", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/capuccino_card.webp" },
+  { nome: "Chapplin", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/chapplin_card.webp" },
+  { nome: "Chico", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/chico_card.webp" },
+  { nome: "Chiquinho", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/chiquinho_card.webp" },
+  { nome: "Cometa", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/cometa_card.webp" },
+  { nome: "Dado", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/dado_card.webp" },
+  { nome: "Dali", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/dali_card.webp" },
+  { nome: "Dante", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/dante_card.webp" },
+  { nome: "Dobby", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/dobby_card.webp" },
+  { nome: "Flokus", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/flokus_card.webp" },
+  { nome: "Flow", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/flow_card.webp" },
+  { nome: "Fritz", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/fritz_card.webp" },
+  { nome: "Heitor", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/heitor_card.webp" },
+  { nome: "Ranzinza", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/ranzinza_card.webp" },
+  { nome: "Tigreso", sexo: "♂", ong: "Meu Amigo de Pata", imagem: "imagens/pets/gatos/machos/tigreso_card.webp" }
+];
+
+document.addEventListener("DOMContentLoaded", function () {
+    const carrossel = document.getElementById("carrosselAutogerado");
+    if (!carrossel) return;
+
+
+    carrossel.innerHTML = "";
+
+     function embaralharLista(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Inverte os elementos de lugar
+        }
+        return array;
+    }
+
+    // Aplica o embaralhamento na nossa lista de pets cadastrados
+    const petsAleatorios = embaralharLista([...listaDePets]); 
+    // Usamos [...listaDePets] para não estragar a ordem original do banco de dados
+
+    // molde do HTML
+    function construirCardHtml(pet, ehCopia = false) {
+        return `
+            <div class="carrossel-item" ${ehCopia ? 'aria-hidden="true"' : ''}>
+                <img src="${pet.imagem}" class="carrossel-img" alt="${pet.nome}">
+                <div class="carrossel-body">
+                    <span class="carrossel-ong">${pet.ong}</span>
+                    <div class="carrossel-title-row">
+                        <span class="carrossel-title">${pet.nome}</span>
+                        <span class="carrossel-sex">${pet.sexo}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    
+    let htmlGerado = "<!-- Bloco Original de Cards -->";
+    petsAleatorios.forEach(pet => {
+        htmlGerado += construirCardHtml(pet, false);
+    });
+
+    
+    htmlGerado += "<!-- REPETIÇÃO AUTOMÁTICA PARA EFEITO INFINITO -->";
+    listaDePets.forEach(pet => {
+        htmlGerado += construirCardHtml(pet, true);
+    });
+
+    
+    carrossel.innerHTML = htmlGerado;
+
+    
+    inicializarControlesCarrossel(carrossel);
+});
+
+
+function inicializarControlesCarrossel(carrossel) {
+    const anterior = document.getElementById("setaAnterior");
+    const proximo = document.getElementById("setaProximo");
+    const container = carrossel.parentElement;
+    if (!anterior || !proximo || !container) return;
+
+    const cards = Array.from(carrossel.querySelectorAll(".carrossel-item"));
+    const totalOriginal = Math.floor(cards.length / 2);
+    const larguraCardCompleto = 195; 
+
+    // TRAVA DE SEGURANÇA CONTRA CLIQUES RÁPIDOS, acho que não pega direito kk
+    let podeClicar = true; 
+
+    
+    carrossel.classList.add("animar-esteira");
+
+    function obterPixelAtualX() {
+        const estiloComputado = window.getComputedStyle(carrossel);
+        const matrizTransform = new WebKitCSSMatrix(estiloComputado.transform);
+        return matrizTransform.m41; 
+    }
+
+    
+    proximo.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!podeClicar) return; 
+        podeClicar = false; 
+
+        carrossel.style.transition = "none";
+        let pixelAtual = obterPixelAtualX();
+        let cardAtual = Math.round(Math.abs(pixelAtual) / larguraCardCompleto);
+        let proximoCard = cardAtual + 1;
+
+        if (proximoCard >= totalOriginal) {
+            proximoCard = 0;
+        }
+
+        carrossel.style.transition = "transform 450ms ease";
+        carrossel.style.transform = `translateX(-${proximoCard * larguraCardCompleto}px)`;
+
+        // Só libera o próximo clique após a animação terminar
+        setTimeout(() => {
+            podeClicar = true; 
+        }, 450);
+    });
+
+    
+    anterior.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!podeClicar) return; 
+        podeClicar = false; 
+
+        carrossel.style.transition = "none";
+        let pixelAtual = obterPixelAtualX();
+        let cardAtual = Math.round(Math.abs(pixelAtual) / larguraCardCompleto);
+        let cardAnterior = cardAtual - 1;
+
+        if (cardAnterior < 0) {
+            cardAnterior = totalOriginal - 1;
+        }
+
+        carrossel.style.transition = "transform 450ms ease";
+        carrossel.style.transform = `translateX(-${cardAnterior * larguraCardCompleto}px)`;
+
+        setTimeout(() => {
+            podeClicar = true; 
+        }, 450);
+    });
+
+    
+    container.addEventListener("mouseenter", function () {
+        let pixelAtual = obterPixelAtualX();
+        carrossel.classList.remove("animar-esteira");
+
+        let cardAlinhado = Math.round(Math.abs(pixelAtual) / larguraCardCompleto);
+        if (cardAlinalhas >= totalOriginal) cardAlinhado = 0;
+
+        carrossel.style.transition = "none";
+        carrossel.style.transform = `translateX(-${cardAlinhado * larguraCardCompleto}px)`;
+        
+        podeClicar = true; 
+    });
+
+    // QUANDO O MOUSE SAI: Força o carrossel a voltar à vida imediatamente
+    container.addEventListener("mouseleave", function () {
+        
+        podeClicar = true; 
+        carrossel.style.transition = "none";
+        
+        
+        carrossel.classList.add("animar-esteira");
+    });
+}
