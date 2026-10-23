@@ -3,37 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ - Adote Petz</title>
+  <title>Cuidados - Meu Amigo de Pata</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
+    /* --- RESET E ESTILOS GLOBAIS DA PÁGINA --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #fcfbf9;
+      color: #333333;
+    }
+
+    /* --- HEADER (Preservando sua estrutura) --- */
+    header {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #f26522;
+    }
+
+    .logo span {
+      color: #2ec4b6;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #555555;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #f26522;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-orange {
+      background-color: #f26522;
+      color: #ffffff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn-orange:hover {
+      background-color: #d9531b;
+    }
+
+    .btn-outline {
+      border: 2px solid #f26522;
+      color: #f26522;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background-color: #f26522;
+      color: #ffffff;
+    }
+
+    /* --- ESTILIZAÇÃO DA PÁGINA EXTRA (CONTEÚDO) --- */
     .pagina-extra {
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 3rem 2rem;
+      padding: 3rem 1.5rem;
     }
+
     .pagina-extra h1 {
-      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+      color: #1d3557;
+      margin-bottom: 0.5rem;
     }
+
+    .subtitulo-pagina {
+      color: #666;
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
     .pagina-extra h2 {
-      margin: 2rem 0 .7rem;
+      font-size: 1.3rem;
+      color: #1d3557;
+      margin-bottom: 0.5rem;
     }
+
     .pagina-extra p {
       line-height: 1.7;
-      color: #333;
+      color: #555;
+      font-size: 0.95rem;
     }
+
     .voltar {
       display: inline-block;
       margin-top: 2rem;
       color: #f26522;
-      font-weight: bold;
+      font-weight: 700;
       text-decoration: none;
+      transition: opacity 0.2s;
     }
+
+    .voltar:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
     .placeholder-card {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 1rem 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      background: #ffffff;
+      padding: 1.8rem;
+      border-radius: 16px;
+      margin: 1.2rem 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      border-left: 5px solid #f26522;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .placeholder-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* --- RESPONSIVIDADE PARA O GITHUB / VS CODE / MOBILE --- */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -41,7 +180,7 @@
 
   <header>
     <div class="logo">
-      adotepetz
+      Meu Amigo de Pata<span>.</span>
     </div>
 
     <nav>
@@ -61,22 +200,26 @@
   </header>
 
   <main class="pagina-extra">
-
     <h1>Cuidados com seu novo amigo</h1>
+    <p class="subtitulo-pagina">Dicas essenciais para tutores de cães e gatos resgatados.</p>
+    
     <div class="placeholder-card">
       <h2>Como preparar a casa?</h2>
-      <p>Texto que você poderá editar depois.</p>
+      <p>Deixe o ambiente seguro para o seu novo cão ou gato. Esconda fios elétricos, proteja janelas e separe um cantinho calmo com caminha, potes de água e ração fresca.</p>
     </div>
+    
     <div class="placeholder-card">
       <h2>O que fazer depois da adoção?</h2>
-      <p>Texto que você poderá editar depois.</p>
+      <p>Dê tempo ao pet para se adaptar à nova rotina. Respeite o espaço dele, mantenha a calma e agende uma consulta veterinária inicial para checar vacinas e vermifugação.</p>
     </div>
+    
     <div class="placeholder-card">
       <h2>Quais cuidados o animal precisa?</h2>
-      <p>Texto que você poderá editar depois.</p>
+      <p>Alimentação de qualidade, água limpa sempre disponível, carinho, passeios diários para cães, enriquecimento ambiental para gatos e visitas regulares ao veterinário.</p>
     </div>
-    <a class="voltar" href="index.html">← Voltar para adoção</a>
     
+    <a class="voltar" href="index.html">← Voltar para adoção</a>
   </main>
+
 </body>
 </html>
